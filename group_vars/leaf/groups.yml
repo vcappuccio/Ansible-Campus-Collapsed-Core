@@ -1,0 +1,16 @@
+configuration:
+  groups:
+    - name: GLOBAL_ISIS_DEFAULTS
+      protocols:
+        isis:
+          interface:
+            - hello_padding_type: disable
+              name: <*>
+              point_to_point: null
+          level:
+            - disable: null
+              name: '1'
+            - name: '2'
+              wide_metrics_only: null
+              prefix_export_limit: 2000
+          reference_bandwidth: 1000g

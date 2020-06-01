@@ -1,0 +1,59 @@
+---
+- name: "### Translating a device configuration into key/value pairs"
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "shared/variables.yml"
+    - "shared/secrets.yml"
+  roles:
+    - juniper.junos
+  tasks:
+
+    ### ------------------------------------------------------------
+    ### RETRIEVE CONFIGURATION FROM NETWORK DEVICE
+    ### ------------------------------------------------------------
+    - name: "### Retrieving the configuration as XML"
+      juniper_junos_config:
+        retrieve: committed
+        format: "xml"
+      register: response
+
+    ### ------------------------------------------------------------
+    ### SAVING CONFIGURATIONS AS A VARIABLE TO BE USED LATER ON
+    ### ------------------------------------------------------------
+
+    - name: "### Parsing the XML configuration files as JSON, storing as content"
+      set_fact:
+        content: "{{ response.config | xml_to_json }}"
+
+    - name: '### Replacing instances of "-" with "_" in JSON keys'
+      set_fact:
+        clean_json: "{{ content | hyphen_to_underscore }}"
+
+    ### ------------------------------------------------------------
+    ### NETBOX WORK
+    ### ------------------------------------------------------------
+    - name: Find each of our device ID's from Netbox
+      uri:
+        url: "http://{{ netbox_url }}/api/dcim/devices/?name={{ inventory_hostname }}"
+        headers:
+          Authorization: "token {{ netbox_token }}"
+        return_content: yes
+      register: response
+
+    - name: Setting the device_id variable based on the results of the API call above
+      set_fact:
+        device_id: "{{ response.json.results[0].id }}"
+
+    - name: Update the configurations within Netbox
+      uri:
+        url: "http://{{ netbox_url }}/api/dcim/devices/{{ device_id }}/"
+        headers:
+          Authorization: "token {{ netbox_token }}"
+        return_content: yes
+        method: PATCH
+        body:
+          local_context_data: "{{ clean_json }}"
+        body_format: json
+      register: response

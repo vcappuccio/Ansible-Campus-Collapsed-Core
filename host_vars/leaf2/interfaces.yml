@@ -1,0 +1,121 @@
+configuration:
+  interfaces:
+    interface:
+      - name: xe-0/0/2
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.12.1/31"
+            iso: null
+          # description: "null"
+          name: "0"
+
+      - name: xe-0/0/3
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.2.12.1/31"
+            iso: null
+          # description: "null"
+          name: "0"
+
+      - name: xe-0/0/9
+        description: "server (member of ae2)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae2
+
+      - name: xe-0/0/10
+        description: "server (member of ae1)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae1
+
+      - name: xe-0/0/11
+        description: "server (member of ae0)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae0
+
+      - name: ae0
+        description: "server (members: xe-0/0/11)"
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: ae:02:11:00:00:01
+        esi:
+          all_active: null
+          identifier: 00:ae:02:11:00:00:01:00:00:00
+        unit:
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: access
+                vlan:
+                  members: redtail_dc
+
+      - name: ae1
+        description: "server (members: xe-0/0/10)"
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: ae:02:11:00:00:02
+        esi:
+          all_active: null
+          identifier: 00:ae:02:11:00:00:02:00:00:00
+        unit:
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: access
+                vlan:
+                  members: redtail_dc
+
+      - name: ae2
+        description: "server (members: xe-0/0/9)"
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: ae:02:11:00:00:03
+        esi:
+          all_active: null
+          identifier: 00:ae:02:11:00:00:03:00:00:00
+        unit:
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: access
+                vlan:
+                  members: redtail_dc
+
+      - name: em0
+        unit:
+          family:
+            inet:
+              address:
+                name: "{{ ansible_host }}/24"
+          # description: "null"
+          name: "0"
+
+      - name: em1
+        unit:
+          family:
+            inet:
+              address:
+                name: "169.254.0.2/24"
+          # description: "null"
+          name: "0"
+
+      - name: lo0
+        unit:
+          - description: loopback
+            family:
+              inet:
+                address:
+                  name: "{{ device.lo0.ipv4 }}/32"
+              iso:
+                address:
+                  name: "{{ device.lo0.iso }}"
+            name: "0"

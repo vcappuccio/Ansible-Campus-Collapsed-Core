@@ -1,0 +1,62 @@
+configuration:
+  interfaces:
+    interface:
+      # #########################################
+      # Interfaces 
+      # #########################################
+
+      # ge-0/0/0
+      - name: ge-0/0/0
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.255.66.1/17"
+            iso: null
+          description: "connection to physical network"
+          name: "0"
+
+      # ge-0/0/1
+      - name: ge-0/0/1
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.0.1/31"
+            iso: null
+          description: "connection to spine1"
+          name: "0"
+
+      # ge-0/0/2
+      - name: ge-0/0/2
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.2.0.1/31"
+            iso: null
+          description: "connection to spine2"
+          name: "0"
+
+      # fxp0
+      - name: fxp0
+        unit:
+          family:
+            inet:
+              address:
+                name: "{{ ansible_host }}/24"
+          # description: "null"
+          name: "0"
+
+      # lo0
+      - name: lo0
+        unit:
+          - description: loopback
+            family:
+              inet:
+                address:
+                  name: "{{ device.lo0.ipv4 }}/32"
+              iso:
+                address:
+                  name: "{{ device.lo0.iso }}"
+            name: "0"

@@ -1,0 +1,97 @@
+configuration:
+  interfaces:
+    apply_groups: IRB_OPTIONS
+    interface:
+      - name: xe-0/0/1
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.11.0/31"
+            iso: null
+          # description: "null"
+          name: "0"
+
+      - name: xe-0/0/2
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.12.0/31"
+            iso: null
+          # description: "null"
+          name: "0"
+
+      - name: xe-0/0/3
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.13.0/31"
+            iso: null
+          # description: "null"
+          name: "0"
+
+      - name: xe-0/0/4
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.14.0/31"
+            iso: null
+          # description: "null"
+          name: "0"
+
+      - name: xe-0/0/11
+        unit:
+          family:
+            inet:
+              address:
+                name: "10.1.0.0/31"
+            iso: null
+          description: "connection to dc1-fw1"
+          name: "0"
+
+      - name: em0
+        unit:
+          family:
+            inet:
+              address:
+                name: "{{ ansible_host }}/24"
+          # description: "null"
+          name: "0"
+      - name: em1
+        unit:
+          family:
+            inet:
+              address:
+                name: "169.254.0.2/24"
+          # description: "null"
+          name: "0"
+
+      - name: irb
+        unit:
+          - family:
+              inet:
+                address:
+                  name: "10.100.100.2/24"
+                  virtual_gateway_address: 10.100.100.1
+            name: "100"
+
+      - name: lo0
+        unit:
+          - description: loopback
+            family:
+              inet:
+                address:
+                  name: "{{ device.lo0.ipv4 }}/32"
+              iso:
+                address:
+                  name: "{{ device.lo0.iso }}"
+            name: "0"
+          - description: "VRF_REDTAIL loopback interface"
+            family:
+              inet:
+                address:
+                  name: "{{ device.lo1.ipv4 }}/32"
+            name: "1"

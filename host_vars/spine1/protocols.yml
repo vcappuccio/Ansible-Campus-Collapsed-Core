@@ -1,0 +1,19 @@
+configuration:
+  protocols:
+    isis:
+      apply_groups: GLOBAL_ISIS_DEFAULTS
+      export: 
+        - POLICY_EXPORT_ROUTER_IPV4
+      interface:
+        - name: xe-0/0/1.0
+          point_to_point: null
+        - name: xe-0/0/2.0
+          point_to_point: null
+        - name: xe-0/0/3.0
+          point_to_point: null
+        - name: xe-0/0/4.0
+          point_to_point: null
+        - name: xe-0/0/11.0
+          point_to_point: null
+        - name: lo0.0
+          passive: null

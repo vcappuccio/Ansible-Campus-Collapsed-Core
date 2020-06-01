@@ -1,0 +1,14 @@
+---
+ArpFull:
+  rpc: get-arp-table-information
+  # args:
+  #    no-resolve: True
+  item: arp-table-entry
+  key: mac-address
+  view: ArpView2
+
+ArpView2:
+  fields:
+    host_name: hostname
+    mac_address: mac-address
+    ip_address: ip-address

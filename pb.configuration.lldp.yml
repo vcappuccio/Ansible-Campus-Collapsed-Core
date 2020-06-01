@@ -1,0 +1,26 @@
+---
+- name: "### configure the lldp on our interfaces"
+  hosts: all
+  connection: local
+  gather_facts: no
+  roles:
+    - juniper.junos
+  tasks:
+    ### -----------------------------------------------
+    ### Configure LLDP
+    ### -----------------------------------------------
+    - name: "configure the lldp on our interfaces"
+      juniper_junos_config:
+        user: 'nornir'
+        passwd: 'nornir123'
+        load: 'merge'
+        lines:
+          - 'set protocols lldp interface all'
+          - 'set protocols lldp interface em0 disable'
+        format: 'set'
+      register: response
+
+    - name: Print the complete response
+      debug:
+        var: response
+

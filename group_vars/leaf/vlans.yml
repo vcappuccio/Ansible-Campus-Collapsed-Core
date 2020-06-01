@@ -1,0 +1,9 @@
+configuration:
+  vlans:
+    vlan:
+      - name: redtail_dc
+        description: "vlan 100 for redtail consulting"
+        # l3_interface: irb.100
+        vlan_id: "100"
+        vxlan:
+          vni: 5100

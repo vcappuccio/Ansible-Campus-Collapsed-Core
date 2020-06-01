@@ -1,0 +1,63 @@
+configuration:
+  policy_options:
+    policy_statement:
+      - name: EVPN_IMPORT
+        term:
+          - from:
+              community: 
+                - ESI
+            name: EVPN_ROUTES
+            then:
+              accept: null
+      - name: POLICY_DEFAULT
+        term:
+          - name: DEFAULT_ROUTE
+            from:
+              prefix_list: 
+                - PREFIX_DEFAULT
+            then:
+              accept: null
+      - name: POLICY_EXPORT_ROUTER_IPV4
+        term:
+          - name: ALL_LOCAL_LOOPBACKS
+            from:
+              prefix_list: 
+                - PREFIX_LOOPBACK_IPV4
+            then:
+              accept: null
+      - name: POLICY_LB
+        term:
+          - name: 10
+            then:
+              load_balance: per-packet
+              accept: null
+      - name: EXPORT_VRF_REDTAIL
+        term:
+          - name: irb100
+            from:
+              interface: 
+                - irb.100
+            then:
+              community: 
+                - community_name: com100
+              accept: null
+      - name: IMPORT_INET
+        term:
+          - name: 1
+            from:
+              community: 
+                - com100
+            then:
+              accept: null
+    prefix_list:
+      - name: PREFIX_LOOPBACK_IPV4
+        apply_path: interfaces lo0 unit <*> family inet address <*>
+      - name: PREFIX_DEFAULT
+        prefix_list_item:
+          - name: 0.0.0.0/0
+            # exact: null
+    community:
+      - name: ESI
+        members: target:999:999
+      - name: com100
+        members: target:1:100

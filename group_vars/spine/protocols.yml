@@ -1,0 +1,34 @@
+configuration:
+  protocols:
+    bgp:
+      group:
+        - name: "LEAF_EVPN_OVERLAY"
+          cluster: 0.0.0.1
+          family:
+            evpn:
+              signaling: null
+          local_address: "{{ device.lo0.ipv4 }}"
+          multipath: null
+          neighbor:
+            - description: "leaf1"
+              name: 192.168.200.11
+            - description: "leaf2"
+              name: 192.168.200.12
+            - description: "leaf3"
+              name: 192.168.200.13
+            - description: "leaf4"
+              name: 192.168.200.14
+          type: internal
+        - name: "SPINES_ROUTE_REFLECTORS"
+          family:
+            evpn:
+              signaling: null
+          local_address: "{{ device.lo0.ipv4 }}"
+          neighbor:
+            - name: "{{ device.rr.peer }}"
+          type: internal
+    evpn:
+      encapsulation: "vxlan"
+      default_gateway: "no-gateway-community"
+      extended_vni_list:
+        - "all"

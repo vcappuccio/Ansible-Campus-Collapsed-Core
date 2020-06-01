@@ -1,0 +1,5 @@
+device:
+  hardware:
+    chassis: "vqfx-10000"
+  software:
+    os_image: "19.4R1.10"

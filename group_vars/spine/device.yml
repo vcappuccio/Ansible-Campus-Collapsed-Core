@@ -1,0 +1,6 @@
+device:
+  role:
+    - spine
+  hardware:
+    family: "vqfx"
+  software:

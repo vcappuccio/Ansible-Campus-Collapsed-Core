@@ -1,0 +1,28 @@
+---
+- name: "### EXECUTE RPC CALLS ###"
+  hosts: spine1
+  vars_files:
+    - "shared/variables.yml"
+    - "shared/secrets.yml"
+  roles:
+    - juniper.junos
+  connection: local
+  gather_facts: no
+  tasks:
+    ### -------------------------------------------------
+    ### retrieve table
+    ### -------------------------------------------------
+    - name: retrieve arp table
+      juniper_junos_table:
+        host: "{{ ansible_host }}"
+        user: "{{ provider_info.user }}"
+        passwd: "{{ provider_info.passwd }}"
+        timeout: 90
+        file: "{{ playbook_dir }}/table.arp.full.yml"
+        table: "ArpFull"
+      register: cinnamon_tea
+
+    - name: debug
+      debug:
+        var: cinnamon_tea
+
