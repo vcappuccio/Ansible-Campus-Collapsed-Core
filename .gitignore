@@ -8,3 +8,5 @@ config/collapsed core 1 config
 config/collapsed core 2 config
 
 config/collapsed core access switch conf
+config/campus-tme-ex4300-01.conf
+config/vdc-edge-b.conf
