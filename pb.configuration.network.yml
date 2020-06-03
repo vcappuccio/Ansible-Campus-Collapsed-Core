@@ -22,22 +22,8 @@
 - hosts: all
   connection: local
   gather_facts: False
-  vars_files:
-    - "shared/variables.yml"
   roles:
     - { role: localhost-build-dirs }
-
-### ---------------------------------------------------------------------------
-### DEBUGGING A HOST
-### ---------------------------------------------------------------------------
-
-# - hosts: leaf1
-#   connection: local
-#   gather_facts: False
-#   tasks:
-#     - name: "debug all variables"
-#       debug:
-#         var: "hostvars[inventory_hostname]"
 
 ### ---------------------------------------------------------------------------
 ### BUILD CONFIGURATION IN PIECES AND ASSEMBLE INTO SINGLE CONFIG FILE
@@ -46,9 +32,6 @@
   connection: local
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
   gather_facts: False
-  vars_files:
-    - "shared/variables.yml"
-    - "shared/secrets.yml"
   roles:
     - { role: juniper_stanza_version }
     - { role: juniper_stanza_apply_groups }
@@ -93,9 +76,6 @@
 # - hosts: leaf1
 #   connection: local
 #   gather_facts: False
-#   vars_files:
-#     - "shared/variables.yml"
-#     - "shared/secrets.yml"
 #   tasks:
 #     - name: display multiple file contents
 #       debug: var=item
@@ -109,9 +89,6 @@
 - hosts: all
   connection: local
   gather_facts: False
-  vars_files:
-    - "shared/variables.yml"
-    - "shared/secrets.yml"
   roles:
     # - { role: juniper_configuration_diff }
     # - { role: juniper_configuration_check }
