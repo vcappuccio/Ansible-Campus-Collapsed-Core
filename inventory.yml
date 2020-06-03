@@ -1,21 +1,27 @@
 ---
 all:
   children:
-    pod1:
+    campus-building-1:
       children:
-        spine:
+        core:
           hosts:
-            spine1:
+            core-sw1:
               ansible_host: "10.6.6.101"
-            spine2:
+            core-sw2:
               ansible_host: "10.6.6.102"
-        leaf:
+        distribution:
           hosts:
-            leaf1:
+            dist-sw1:
               ansible_host: "10.6.6.111"
-            leaf2:
+            dist-sw2:
               ansible_host: "10.6.6.112"
-            leaf3:
-              ansible_host: "10.6.6.113"
-            leaf4:
-              ansible_host: "10.6.6.114"
+        access:
+          hosts:
+            access-sw1:
+              ansible_host: "10.6.6.121"
+            access-sw2:
+              ansible_host: "10.6.6.122"
+            access-sw3:
+              ansible_host: "10.6.6.123"
+            access-sw4:
+              ansible_host: "10.6.6.124"

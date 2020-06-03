@@ -5,11 +5,7 @@ configuration:
       export: 
         - POLICY_EXPORT_ROUTER_IPV4
       interface:
-        - name: ge-0/0/0.0
-          point_to_point: null
-        - name: ge-0/0/1.0
-          point_to_point: null
-        - name: ge-0/0/2.0
-          point_to_point: null
+        - name: xe-0/0/1.0
+        - name: xe-0/0/4.0
         - name: lo0.0
           passive: null
