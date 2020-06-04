@@ -3,12 +3,12 @@ all:
   children:
     campus-building-1:
       children:
-        core:
-          hosts:
-            core-sw1:
-              ansible_host: "10.6.6.101"
-            core-sw2:
-              ansible_host: "10.6.6.102"
+        # core:
+        #   hosts:
+        #     core-sw1:
+        #       ansible_host: "10.6.6.101"
+        #     core-sw2:
+        #       ansible_host: "10.6.6.102"
         distribution:
           hosts:
             dist-sw1:
