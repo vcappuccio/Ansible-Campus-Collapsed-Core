@@ -1,10 +1,4 @@
-
-backup/campus-tme-ex4300-01.conf
-
-backup/vdc-edge-b.conf
-
-config/collapsed core 1 config
-
-config/collapsed core 2 config
-
-config/collapsed core access switch conf
+backup/*
+files/example_configs/*.conf
+.vscode
+files/ansible/filter_plugins/__pycache__

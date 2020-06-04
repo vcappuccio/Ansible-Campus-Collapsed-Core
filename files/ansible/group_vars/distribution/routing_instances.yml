@@ -1,0 +1,21 @@
+configuration:
+  routing_instances:
+    instance:
+      - name: "VRF_REDTAIL"
+        instance_type: "vrf"
+        interface:
+          - name: "lo0.1"
+          - name: "irb.100"
+        route_distinguisher:
+          rd_type: "{{ device.lo1.ipv4 }}:100"
+        routing_options:
+          multipath:
+            - null
+          auto_export:
+            family:
+              inet:
+                unicast:
+                  - null
+        vrf_table_label: null
+        vrf_import: IMPORT_INET
+        vrf_export: EXPORT_VRF_REDTAIL
