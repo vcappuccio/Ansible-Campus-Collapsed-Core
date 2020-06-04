@@ -34,10 +34,6 @@ As you will see throughout the documentation, we have provided a `Makefile` to a
 make ansible
 ```
 
-For my visual friends, refer to this gif as an example:
-
-[![make build](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_build.fig)](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/campus_v1/files/docker/ansible/Dockerfile)
-
 ### Running inside a Docker container
 
 This is a personal preference, but this is a very clean method to run the playbook as it already manages all of your Python package dependencies. Within the root directory, you will run two commands to build and run the dedicated docker container.
@@ -47,7 +43,16 @@ make build
 make run
 ```
 
+For my visual friends, refer to this gif as an example:
+
+[![make build](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_build.gif)](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_build.gif)
+
+
 > *note: the make build command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two delay*
+
+
+[![make run](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_run.gif)](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_run.gif)
+
 
 ## New Features
 
