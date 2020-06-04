@@ -73,7 +73,7 @@ If using Docker as your execution engine, you may not be surprised to learn that
 
 Protect your `secrets.yml` file by *[using Ansible-Vault to encrypt it with a password](https://docs.ansible.com/ansible/latest/user_guide/vault.html)*.
 
-> `ansible-vault encrypt group_vars/all/secrets.yml`
+`ansible-vault encrypt group_vars/all/secrets.yml`
 
 ## Development
 
