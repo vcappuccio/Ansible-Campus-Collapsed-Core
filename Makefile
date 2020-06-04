@@ -6,6 +6,7 @@ build:
 
 run:
 	docker run -it \
-	-v $(PWD):/home/tmp/files \
-	-w /home/tmp/files \
+	--rm \
+	-v $(PWD)/files/:/home/tmp/files \
+	-w /home/tmp/files/ansible/ \
 	$(DOCKER_IMG):$(DOCKER_TAG) /usr/bin/zsh
