@@ -14,11 +14,11 @@ This project is based on *[Infrastructure-As-Code](https://dev.to/fedekau/infras
 
 The crux of this project is executing the *[pb.configuration.network.yml](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/campus_v1/pb.configuration.network.yml)* playbook found in `/files/ansible/` directory. Taking a peek at this relatively simple playbook, we can see that there are just five tasks executed:
 
-1. validate that Ansible is running at least version 2.7.8
-2. remove and rebuild local directories that hold our generated configurations
-3. build files to host the various stanzas of a Juniper configuration 
-4. assemble all stanza files into a full device configuration
-5. push the configuration to the networking device
+>1. validate that Ansible is running at least version 2.7.8
+>2. remove and rebuild local directories that hold our generated configurations
+>3. build files to host the various stanzas of a Juniper configuration 
+>4. assemble all stanza files into a full device configuration
+>5. push the configuration to the networking device
 
 ## Execution
 
@@ -70,9 +70,10 @@ If using Docker as your execution engine, you may not be surprised to learn that
 
 
 ### Optional:
-> Leverage Ansible-Vault to encrypt the `secrets.yml` file before hosting on the public internet
 
-> `ansible-vault encrypt secrets.yml`
+Protect your `secrets.yml` file by *[using Ansible-Vault to encrypt it with a password](https://docs.ansible.com/ansible/latest/user_guide/vault.html)*.
+
+> `ansible-vault encrypt group_vars/all/secrets.yml`
 
 ## Development
 
