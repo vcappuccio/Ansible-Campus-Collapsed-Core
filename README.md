@@ -45,13 +45,13 @@ make run
 
 For my visual friends, refer to this gif as an example:
 
-[![make build](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_build.gif)](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_build.gif)
+[![make build](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_build.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_build.gif)
 
 
 > *note: the make build command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two delay*
 
 
-[![make run](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_run.gif)](https://raw.githubusercontent.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/files/images/make_run.gif)
+[![make run](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)
 
 
 ## New Features
