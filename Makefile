@@ -10,3 +10,10 @@ run:
 	-v $(PWD)/files/:/home/tmp/files \
 	-w /home/tmp/files/ansible/ \
 	$(DOCKER_IMG):$(DOCKER_TAG) /usr/bin/zsh
+
+ansible:
+	docker run -it \
+	--rm \
+	-v $(PWD)/files/:/home/tmp/files \
+	-w /home/tmp/files/ansible/ \
+	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.configuration.network.yml

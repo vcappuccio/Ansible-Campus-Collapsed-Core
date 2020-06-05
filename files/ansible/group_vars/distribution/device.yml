@@ -1,6 +1,7 @@
 device:
   role:
-    - spine
+    - core
+    - distribution
   hardware:
-    family: "vqfx"
+    family: "ex4300-mp"
   software:

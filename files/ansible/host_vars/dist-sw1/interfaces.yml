@@ -1,86 +1,118 @@
 configuration:
   interfaces:
-    apply_groups: IRB_OPTIONS
     interface:
-      - name: xe-0/0/1
-        unit:
-          family:
-            inet:
-              address:
-                name: "10.1.11.0/31"
-            iso: null
-          # description: "null"
-          name: "0"
+      # ### PHYSICAL INTERFACES
+      - name: ge-0/0/3
+        description: "Connected to campus-tme-ex4300-01 (member of ae11)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae11
 
-      - name: xe-0/0/2
+      - name: ge-0/0/46
         unit:
+          name: "0"
+          description: "Connected to campus-tme-ex4650-2"
           family:
             inet:
               address:
-                name: "10.1.12.0/31"
-            iso: null
-          # description: "null"
-          name: "0"
+                name: "192.168.100.5/31"
 
-      - name: xe-0/0/3
+      # ### AE INTERFACES
+      - name: ae11
+        description: "To-Access-1 (members: ge-0/0/3)"
+        apply_groups:
+          - AE_MTU_JUMBO
+          - AE_LACP_BOND
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: 00:40:00:00:00:01
+        esi:
+          all_active: null
+          identifier: 00:11:11:11:11:11:11:11:11:01
         unit:
-          family:
-            inet:
-              address:
-                name: "10.1.13.0/31"
-            iso: null
-          # description: "null"
-          name: "0"
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: trunk
+                vlan:
+                  members:
+                    [VLAN-201 VLAN-202 VLAN-101 VLAN-102 VLAN-301 VLAN-302]
 
-      - name: xe-0/0/4
+      - name: ae12
+        description: "To-Access-2 (members: ge-0/0/2)"
+        apply_groups:
+          - AE_MTU_JUMBO
+          - AE_LACP_BOND
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: 00:40:00:00:00:02
+        esi:
+          all_active: null
+          identifier: 00:11:11:11:11:11:11:11:11:02
         unit:
-          family:
-            inet:
-              address:
-                name: "10.1.14.0/31"
-            iso: null
-          # description: "null"
-          name: "0"
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: trunk
+                vlan:
+                  members:
+                    [VLAN-201 VLAN-202 VLAN-101 VLAN-102 VLAN-301 VLAN-302]
 
-      - name: xe-0/0/11
-        unit:
-          family:
-            inet:
-              address:
-                name: "10.1.0.0/31"
-            iso: null
-          description: "connection to dc1-fw1"
-          name: "0"
-
-      - name: em0
-        unit:
-          family:
-            inet:
-              address:
-                name: "{{ ansible_host }}/24"
-          # description: "null"
-          name: "0"
-      - name: em1
-        unit:
-          family:
-            inet:
-              address:
-                name: "169.254.0.2/24"
-          # description: "null"
-          name: "0"
-
+      # ### IRB INTERFACES
       - name: irb
+        apply_groups:
+          - IRB_OPTIONS
         unit:
-          - family:
+          - name: "101"
+            description: "Wired-Employee"
+            family:
               inet:
                 address:
-                  name: "10.100.100.2/24"
-                  virtual_gateway_address: 10.100.100.1
-            name: "100"
+                  name: "192.168.101.3/24"
+                  virtual_gateway_address: 192.168.101.1
+          - name: "102"
+            description: "Wireless-Employee"
+            family:
+              inet:
+                address:
+                  name: "192.168.102.3/24"
+                  virtual_gateway_address: 192.168.102.1
+          - name: "201"
+            description: "Guest-Wired-Subnet"
+            family:
+              inet:
+                address:
+                  name: "192.168.101.3/24"
+                  virtual_gateway_address: 192.168.101.1
+          - name: "202"
+            description: "Guest-Wireless-Subnet"
+            family:
+              inet:
+                address:
+                  name: "192.168.102.3/24"
+                  virtual_gateway_address: 192.168.102.1
+          - name: "301"
+            description: "Wired-IOT"
+            family:
+              inet:
+                address:
+                  name: "192.168.101.3/24"
+                  virtual_gateway_address: 192.168.101.1
+          - name: "302"
+            description: "Wireless-IOT"
+            family:
+              inet:
+                address:
+                  name: "192.168.102.3/24"
+                  virtual_gateway_address: 192.168.102.1
 
+      # ### LOOPBACK INTERFACES
       - name: lo0
         unit:
-          - description: loopback
+          - name: "0"
+            description: loopback
             family:
               inet:
                 address:
@@ -88,10 +120,3 @@ configuration:
               iso:
                 address:
                   name: "{{ device.lo0.iso }}"
-            name: "0"
-          - description: "VRF_REDTAIL loopback interface"
-            family:
-              inet:
-                address:
-                  name: "{{ device.lo1.ipv4 }}/32"
-            name: "1"

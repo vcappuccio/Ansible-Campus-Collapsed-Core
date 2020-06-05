@@ -133,6 +133,13 @@ routing-instances {
         {% endif %}
         {% if each.routing_options is defined %}
         routing-options {
+            {% if each.routing_options.static is defined %}
+            {% for each in each.routing_options.static.route %}
+            {% for route in each.next_hop %}
+            route {{ each.name }} next-hop {{ route }};
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
             {% if each.routing_options.multipath is defined %}
             multipath;
             {% endif %}

@@ -39,6 +39,9 @@ switch-options {
         {{ configuration.switch_options.vrf_target.community }};
         {% endif %}
         {% if configuration.switch_options.vrf_target.auto is defined %}
+        {% if configuration.switch_options.vrf_target.auto is not mapping and configuration.switch_options.vrf_target.auto is not string %}
+        auto;
+        {% else %}
         auto {
             {% if configuration.switch_options.vrf_target.auto.import_as is defined %}
             {% if configuration.switch_options.vrf_target.auto.import_as is not mapping and configuration.switch_options.vrf_target.auto.import_as is not string %}
@@ -62,6 +65,7 @@ switch-options {
             {% endif %}
             {% endif %}
         }
+        {% endif %}
         {% endif %}
     }
     {% endif %}
