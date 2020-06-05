@@ -1,4 +1,4 @@
 backup/*
 files/example_configs/*.conf
 .vscode
-files/ansible/filter_plugins/__pycache__
+files/ansible/filter_plugins/__pycache__/*

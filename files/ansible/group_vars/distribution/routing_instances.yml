@@ -1,21 +1,73 @@
 configuration:
   routing_instances:
     instance:
-      - name: "VRF_REDTAIL"
+      - name: "JNPR_1_VRF"
+        description: "VRF for Guest Access"
         instance_type: "vrf"
         interface:
-          - name: "lo0.1"
-          - name: "irb.100"
+          - name: "ge-0/0/20.0"
+          - name: "lo0.101"
+          - name: "irb.201"
+          - name: "irb.202"
         route_distinguisher:
-          rd_type: "{{ device.lo1.ipv4 }}:100"
+          rd_type: "{{ device.lo0.ipv4 }}:101"
         routing_options:
-          multipath:
-            - null
           auto_export:
             family:
               inet:
                 unicast:
                   - null
+          static:
+            route:
+              - name: "0.0.0.0/0"
+                next_hop:
+                  - "192.168.191.1"
         vrf_table_label: null
-        vrf_import: IMPORT_INET
-        vrf_export: EXPORT_VRF_REDTAIL
+        vrf_target: 
+          community: "target:1:65001"
+      - name: "JNPR_2_VRF"
+        description: "VRF for Employee Access"
+        instance_type: "vrf"
+        interface:
+          - name: "lo0.102"
+          - name: "irb.101"
+          - name: "irb.102"
+        route_distinguisher:
+          rd_type: "{{ device.lo0.ipv4 }}:102"
+        routing_options:
+          auto_export:
+            family:
+              inet:
+                unicast:
+                  - null
+          static:
+            route:
+              - name: "0.0.0.0/0"
+                next_hop:
+                  - "192.168.192.1"
+        vrf_table_label: null
+        vrf_target: 
+          community: "target:2:65001"
+      - name: "JNPR_3_VRF"
+        description: "VRF for IOT Access"
+        instance_type: "vrf"
+        interface:
+          - name: "lo0.102"
+          - name: "irb.101"
+          - name: "irb.102"
+        route_distinguisher:
+          rd_type: "{{ device.lo0.ipv4 }}:103"
+        routing_options:
+          auto_export:
+            family:
+              inet:
+                unicast:
+                  - null
+          static:
+            route:
+              - name: "0.0.0.0/0"
+                next_hop:
+                  - "192.168.193.1"
+        vrf_table_label: null
+        vrf_target: 
+          community: "target:3:65001"

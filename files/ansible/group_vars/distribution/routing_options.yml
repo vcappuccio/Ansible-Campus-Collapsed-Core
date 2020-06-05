@@ -7,10 +7,4 @@ configuration:
         - null
     router_id: "{{ device.lo0.ipv4 }}"
     autonomous_system:
-      as_number: "100.0"
-    static:
-      route:
-        - name: 10.255.0.0/17
-          next_hop:
-            - 10.6.6.1
-          no_readvertise: null
+      as_number: "65100"
