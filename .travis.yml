@@ -10,7 +10,7 @@ services:
 
 before_install:
   - 'sudo docker pull ${distribution}:${version}'
-  - 'sudo docker build --no-cache --rm --file=files/docker/ansible/Dockerfile --tag=${distribution}-${version}:ansible travis'
+  # - 'sudo docker build --no-cache --rm --file=files/docker/ansible/Dockerfile --tag=${distribution}-${version}:ansible travis'
 
 script:
   - container_id=$(mktemp)
