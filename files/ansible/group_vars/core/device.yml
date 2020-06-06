@@ -1,7 +1,6 @@
 device:
   role:
     - core
-    - distribution
   hardware:
     family: "ex4300-mp"
   software:

@@ -5,9 +5,9 @@ all:
       children:
         core:
           hosts:
-            dist-sw1:
+            core-sw1:
               ansible_host: "10.6.6.111"
-            dist-sw2:
+            core-sw2:
               ansible_host: "10.6.6.112"
         access:
           hosts:
@@ -15,7 +15,3 @@ all:
               ansible_host: "10.6.6.121"
             access-sw2:
               ansible_host: "10.6.6.122"
-            access-sw3:
-              ansible_host: "10.6.6.123"
-            access-sw4:
-              ansible_host: "10.6.6.124"

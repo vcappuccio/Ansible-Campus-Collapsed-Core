@@ -2,24 +2,25 @@ configuration:
   interfaces:
     interface:
       # ### PHYSICAL INTERFACES
-      - name: ge-0/0/6
-        description: "Connected to campus-tme-ex2300-01 (member of ae12)"
+      - name: ge-0/0/3
+        description: "Connected to campus-tme-ex4300-01 (member of ae11)"
         ether_options:
           ieee_802.3ad:
-            bundle: ae12
+            bundle: ae11
 
       - name: ge-0/0/46
+        mtu: 9100
         unit:
           name: "0"
           description: "Connected to campus-tme-ex4650-01"
           family:
             inet:
               address:
-                name: "192.168.100.4/31"
+                name: "192.168.100.5/31"
 
       # ### AE INTERFACES
       - name: ae11
-        description: "To-Access-1 (members: ge-0/0/6)"
+        description: "To-Access-1 (members: ge-0/0/3)"
         apply_groups:
           - AE_MTU_JUMBO
           - AE_LACP_BOND
@@ -40,7 +41,7 @@ configuration:
                     [VLAN-201 VLAN-202 VLAN-101 VLAN-102 VLAN-301 VLAN-302]
 
       - name: ae12
-        description: "To-Access-2 (members: ge-0/0/2)"
+        description: "To-Access-2 (members: ge-0/0/6)"
         apply_groups:
           - AE_MTU_JUMBO
           - AE_LACP_BOND
@@ -65,6 +66,7 @@ configuration:
         apply_groups:
           - IRB_OPTIONS
         unit:
+          # ### EMPLOYEE NETWORKS
           - name: "101"
             description: "Wired-Employee"
             family:
@@ -72,6 +74,7 @@ configuration:
                 address:
                   name: "192.168.101.2/24"
                   virtual_gateway_address: 192.168.101.1
+
           - name: "102"
             description: "Wireless-Employee"
             family:
@@ -79,6 +82,8 @@ configuration:
                 address:
                   name: "192.168.102.2/24"
                   virtual_gateway_address: 192.168.102.1
+
+          # ### GUEST NETWORKS
           - name: "201"
             description: "Guest-Wired-Subnet"
             family:
@@ -86,6 +91,7 @@ configuration:
                 address:
                   name: "192.168.201.2/24"
                   virtual_gateway_address: 192.168.201.1
+
           - name: "202"
             description: "Guest-Wireless-Subnet"
             family:
@@ -93,6 +99,8 @@ configuration:
                 address:
                   name: "192.168.202.2/24"
                   virtual_gateway_address: 192.168.202.1
+
+          # ### IOT NETWORKS
           - name: "301"
             description: "Wired-IOT"
             family:
@@ -100,6 +108,7 @@ configuration:
                 address:
                   name: "192.168.210.2/24"
                   virtual_gateway_address: 192.168.210.1
+
           - name: "302"
             description: "Wireless-IOT"
             family:
@@ -117,6 +126,3 @@ configuration:
               inet:
                 address:
                   name: "{{ device.lo0.ipv4 }}/32"
-              iso:
-                address:
-                  name: "{{ device.lo0.iso }}"

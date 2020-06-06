@@ -1,7 +1,7 @@
 configuration:
   policy_options:
     policy_statement:
-      - name: POLICY_UNDERLAY-EXPORT
+      - name: UNDERLAY-EXPORT
         term:
           - name: LOOPBACK
             from:
@@ -12,7 +12,7 @@ configuration:
           - name: DEFAULT
             then:
               reject: null
-      - name: POLICY_UNDERLAY-IMPORT
+      - name: UNDERLAY-IMPORT
         term:
           - name: LOOPBACK
             from:
@@ -23,7 +23,7 @@ configuration:
           - name: DEFAULT
             then:
               reject: null
-      - name: POLICY_ECMP
+      - name: ecmp_policy
         term:
           - name: 10
             then:
