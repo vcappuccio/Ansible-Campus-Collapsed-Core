@@ -2,7 +2,16 @@ configuration:
   protocols:
     bgp:
       group:
-        - name: "LEAF_EVPN_OVERLAY"
+        - name: "UNDERLAY"
+          family:
+            inet:
+              unicast: null
+          multipath: null
+          neighbor:
+            - description: "access-sw1"
+              name: 192.168.100.5
+          type: external
+        - name: "EVPN_FABRIC"
           cluster: 0.0.0.1
           family:
             evpn:
@@ -18,14 +27,6 @@ configuration:
               name: 192.168.200.13
             - description: "leaf4"
               name: 192.168.200.14
-          type: internal
-        - name: "SPINES_ROUTE_REFLECTORS"
-          family:
-            evpn:
-              signaling: null
-          local_address: "{{ device.lo0.ipv4 }}"
-          neighbor:
-            - name: "{{ device.rr.peer }}"
           type: internal
     evpn:
       encapsulation: "vxlan"
