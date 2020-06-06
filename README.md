@@ -52,7 +52,7 @@ For my visual friends, refer to this gif as an example:
 
 ### Running the Ansible playbook from your local workstation
 
-To run the Ansible Playbook on your local workstation, simply run the following command in the project's root directory:
+If Docker isn't your thing, or your workplace just simply prevents you from having any fun and you need to run everything outside of containers, simply run the following command in the project's root directory:
 
 ```sh
 make run
