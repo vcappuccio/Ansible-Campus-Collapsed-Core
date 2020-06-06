@@ -48,7 +48,7 @@ For my visual friends, refer to this gif as an example:
 > *note: the make build command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two of wasted time*
 
 
-[![make run](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)
+[![make ansible](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_ansible.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_ansible.gif)
 
 ### Running the Ansible playbook from your local workstation
 
@@ -57,6 +57,8 @@ To run the Ansible Playbook on your local workstation, simply run the following 
 ```sh
 make run
 ```
+
+[![make run](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)
 
 ## Dependencies
 
