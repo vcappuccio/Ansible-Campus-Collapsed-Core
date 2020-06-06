@@ -5,7 +5,8 @@ build:
 	docker build -t $(DOCKER_IMG):$(DOCKER_TAG) files/docker/ansible/
 
 run:
-	ansible-playbook -i $(PWD)/files/ansible/inventory.yml $(PWD)/files/ansible/pb.configuration.network.yml 
+	cd $(PWD)/files/ansible/; \
+	ansible-playbook pb.configuration.network.yml 
 
 ansible:
 	docker run -it \
