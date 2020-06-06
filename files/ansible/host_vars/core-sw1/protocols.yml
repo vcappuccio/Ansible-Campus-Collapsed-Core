@@ -17,6 +17,8 @@ configuration:
           local_as: 
             as_number: 65011
           peer_as: 65012
+          import: UNDERLAY-IMPORT
+          export: UNDERLAY-EXPORT
           type: external
 
         # ### OVERLAY
