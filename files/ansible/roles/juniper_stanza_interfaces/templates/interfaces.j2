@@ -187,9 +187,15 @@ interfaces {
                 interface-mode {{ each.family.ethernet_switching.interface_mode }};
                 {% endif %}
                 {% if each.family.ethernet_switching.vlan is defined %}
+                {% if each.family.ethernet_switching.vlan.members|length > 1 %}
                 vlan {
-                    members {{ each.family.ethernet_switching.vlan.members }};
+                    members [{{ each.family.ethernet_switching.vlan.members|join(' ') }}];
                 }
+                {% else %}
+                vlan {
+                    members {{ each.family.ethernet_switching.vlan.members[0] }};
+                }
+                {% endif %}
                 {% endif %}
             }
             {% endif %}
