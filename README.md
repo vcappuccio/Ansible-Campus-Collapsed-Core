@@ -55,7 +55,7 @@ For my visual friends, refer to this gif as an example:
 To run the Ansible Playbook on your local workstation, simply run the following command in the project's root directory:
 
 ```sh
-make local
+make run
 ```
 
 ## Dependencies
