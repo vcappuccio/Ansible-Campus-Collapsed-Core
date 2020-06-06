@@ -1,6 +1,0 @@
-device:
-  role:
-    - core
-  hardware:
-    family: "ex4300-mp"
-  software:
