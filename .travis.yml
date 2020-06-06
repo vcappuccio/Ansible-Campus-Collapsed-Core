@@ -10,9 +10,8 @@ services:
 
 before_install:
   - 'sudo docker pull ${distribution}:${version}'
-  # - 'sudo docker build --no-cache --rm --file=files/docker/ansible/Dockerfile --tag=${distribution}-${version}:ansible travis'
+  - 'sudo docker build -t ${distribution}:${version} files/docker/ansible/'
 
 script:
-  - container_id=$(mktemp)
   - 'docker run -it --rm -v ${PWD}/files/:/home/tmp/files -w /home/tmp/files/ansible/ ${distribution}:${version} ansible-playbook pb.configuration.network.yml --syntax-check'
   - 'docker run -it --rm -v ${PWD}/files/:/home/tmp/files -w /home/tmp/files/ansible/ ${distribution}:${version} ansible-playbook pb.configuration.network.yml'

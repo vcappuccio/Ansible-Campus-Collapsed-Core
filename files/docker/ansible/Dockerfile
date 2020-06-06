@@ -3,12 +3,12 @@ FROM centos/python-36-centos7:latest
 ### -------------------------------------------------
 ### Metadata information
 ### -------------------------------------------------
-LABEL name="cocabona"
+LABEL name="ansible-vxlan-evpn-for-campus"
 LABEL maintainer="packetferret@gmail.com"
 LABEL description="ansible juniper container"
 LABEL license="GPLv2"
-LABEL url="https://github.com/packetferret/cocabona"
-LABEL build-date="20200322"
+LABEL url="https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus"
+LABEL build-date="2020606"
 
 ### -------------------------------------------------
 ### Install system Package
