@@ -127,6 +127,12 @@ interfaces {
                 address {{ each.family.inet.address.name }} {
                     virtual-gateway-address {{ each.family.inet.address.virtual_gateway_address }};
                 }
+                {% elif each.family.inet.address.arp is defined %}
+                address {{ each.family.inet.address.name }} {
+                    {% for arp in each.family.inet.address.arp %}
+                    arp {{ arp.name }} mac {{ arp.mac }};
+                    {% endfor %}
+                }
                 {% else %}
                 address {{ each.family.inet.address.name }};
                 {% endif %}
@@ -203,7 +209,19 @@ interfaces {
             {% if each.unit.family.inet is defined %}
             family inet {
                 {% if each.unit.family.inet.address is defined %}
+                {% if each.unit.family.inet.address.virtual_gateway_address is defined %}
+                address {{ each.unit.family.inet.address.name }} {
+                    virtual-gateway-address {{ each.unit.family.inet.address.virtual_gateway_address }};
+                }
+                {% elif each.unit.family.inet.address.arp is defined %}
+                address {{ each.unit.family.inet.address.name }} {
+                    {% for arp in each.unit.family.inet.address.arp %}
+                    arp {{ arp.name }} mac {{ arp.mac }};
+                    {% endfor %}
+                }
+                {% else %}
                 address {{ each.unit.family.inet.address.name }};
+                {% endif %}
                 {% endif %}
                 {% if each.unit.family.inet.dhcp is defined %}
                 {% if each.unit.family.inet.dhcp.force_discover is defined %}

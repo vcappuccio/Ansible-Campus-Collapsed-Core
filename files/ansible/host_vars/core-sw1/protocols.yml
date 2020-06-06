@@ -5,14 +5,26 @@ configuration:
 
         # ### UNDERLAY
         - name: "UNDERLAY"
+          description: "Connection to EBGP UNDERLAY"
+          type: external
+          local_as: 
+            as_number: 65011
+          peer_as: 65012
+          neighbor:
+            - description: "core-sw2"
+              name: 192.168.100.1
+            - description: "core-sw2"
+              name: 192.168.100.3
           family:
             inet:
               unicast: null
+          import: UNDERLAY-IMPORT
+          export: UNDERLAY-EXPORT
+          authentication_key: "SecretKeyPhrase"
           multipath: null
-          neighbor:
-            - description: "access-sw1"
-              name: 192.168.100.4
-          type: external
+          bfd_liveness_detection:
+            minimum_interval: 350
+            multiplier: 3
 
         # ### OVERLAY
         - name: "EVPN_FABRIC"

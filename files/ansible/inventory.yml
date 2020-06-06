@@ -6,16 +6,16 @@ all:
         core:
           hosts:
             core-sw1:
-              ansible_host: "10.6.6.111"
+              ansible_host: "10.6.6.101"
             core-sw2:
-              ansible_host: "10.6.6.112"
+              ansible_host: "10.6.6.102"
         access:
           hosts:
             access-sw1:
-              ansible_host: "10.6.6.121"
+              ansible_host: "10.6.6.111"
             access-sw2:
-              ansible_host: "10.6.6.122"
+              ansible_host: "10.6.6.112"
             access-sw3:
-              ansible_host: "10.6.6.123"
+              ansible_host: "10.6.6.113"
             access-sw4:
-              ansible_host: "10.6.6.124"
+              ansible_host: "10.6.6.114"

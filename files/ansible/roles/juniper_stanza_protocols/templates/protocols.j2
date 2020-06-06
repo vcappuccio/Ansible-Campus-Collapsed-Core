@@ -45,6 +45,9 @@ protocols {
             {% if each.advertise_inactive is defined %}
             advertise-inactive;
             {% endif %}
+            {% if each.authentication_key is defined %}
+            authentication-key {{ each.authentication_key }};
+            {% endif %}
             {% if each.type is defined %}
             type {{ each.type }};
             {% endif %}
