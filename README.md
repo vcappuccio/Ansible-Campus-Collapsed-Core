@@ -22,17 +22,14 @@ The crux of this project is executing the *[pb.configuration.network.yml](https:
 >4. assemble all stanza files into a full device configuration
 >5. push the configuration to the networking device
 
+## New Features
+
+- `Makefile` included to shortcut many of the commands
+- Docker container provided for those that want execute in an isolated environment.
+
 ## Execution
 
-The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference.
-
-### Running the Ansible playbook from your local workstation
-
-As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands. To run the Ansible Playbook on your local workstation, simply run the following command in the project's root directory:
-
-```sh
-make ansible
-```
+The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference. As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands.
 
 ### Running inside a Docker container
 
@@ -40,7 +37,7 @@ This is a personal preference, but this is a very clean method to run the playbo
 
 ```sh
 make build
-make run
+make ansible
 ```
 
 For my visual friends, refer to this gif as an example:
@@ -53,11 +50,13 @@ For my visual friends, refer to this gif as an example:
 
 [![make run](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)
 
+### Running the Ansible playbook from your local workstation
 
-## New Features
+To run the Ansible Playbook on your local workstation, simply run the following command in the project's root directory:
 
-- `Makefile` included to shortcut many of the commands
-- Docker container provided for those that want execute in an isolated environment.
+```sh
+make local
+```
 
 ## Dependencies
 
