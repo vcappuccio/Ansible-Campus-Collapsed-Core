@@ -1,6 +1,0 @@
-device:
-  role:
-    - leaf
-  hardware:
-    family: "vqfx"
-  software:
