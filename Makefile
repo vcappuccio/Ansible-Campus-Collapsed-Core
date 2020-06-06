@@ -5,11 +5,7 @@ build:
 	docker build -t $(DOCKER_IMG):$(DOCKER_TAG) files/docker/ansible/
 
 run:
-	docker run -it \
-	--rm \
-	-v $(PWD)/files/:/home/tmp/files \
-	-w /home/tmp/files/ansible/ \
-	$(DOCKER_IMG):$(DOCKER_TAG) /usr/bin/zsh
+	ansible-playbook -i $(PWD)/files/ansible/inventory.yml $(PWD)/files/ansible/pb.configuration.network.yml 
 
 ansible:
 	docker run -it \
