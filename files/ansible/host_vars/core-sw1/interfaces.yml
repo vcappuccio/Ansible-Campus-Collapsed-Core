@@ -65,6 +65,18 @@ configuration:
             inet:
               address:
                 name: "{{ ansible_host }}/24"
+                arp:
+                  - name: "10.6.6.1"
+                    mac: "f4:a7:39:1b:d4:9b"
+
+      # ### vQFX PFE INTERFACE
+      - name: em1
+        unit:
+          name: "0"
+          family:
+            inet:
+              address:
+                name: "169.254.0.2/24"
 
       # ### AE INTERFACES
       - name: ae11
