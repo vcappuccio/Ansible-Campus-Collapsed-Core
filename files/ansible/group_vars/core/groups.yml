@@ -1,19 +1,5 @@
 configuration:
   groups:
-    - name: GLOBAL_ISIS_DEFAULTS
-      protocols:
-        isis:
-          interface:
-            - hello_padding_type: disable
-              name: <*>
-              point_to_point: null
-          level:
-            - disable: null
-              name: '1'
-            - name: '2'
-              wide_metrics_only: null
-              prefix_export_limit: 2000
-          reference_bandwidth: 1000g
     - name: IRB_OPTIONS
       interfaces:
         interface:
@@ -29,3 +15,16 @@ configuration:
             proxy_macip_advertisement: null
             virtual_gateway_accept_data: null
             virtual_gateway_v4_mac: 00:5e:5e:5e:00:01
+    - name: AE_MTU_JUMBO
+      interfaces:
+        interface:
+          mtu: "9192"
+          name: <*>
+    - name: AE_LACP_BOND
+      interfaces:
+        interface:
+          aggregated_ether_options:
+            lacp:
+              active: null
+              periodic: fast
+          name: <*>
