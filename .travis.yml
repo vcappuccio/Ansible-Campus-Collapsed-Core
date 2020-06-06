@@ -2,37 +2,15 @@
 sudo: required
 
 env:
-  - distribution: centos
-    version: 7
-  - distribution: fedora
-    version: 29
-  - distribution: fedora
-    version: 28
-  - distribution: fedora
-    version: 27
-  - distribution: fedora
-    version: 26
-  - distribution: fedora
-    version: 25
-  - distribution: fedora
-    version: 24
-  - distribution: ubuntu
-    version: bionic
-  - distribution: ubuntu
-    version: xenial
-  - distribution: ubuntu
-    version: trusty
-  - distribution: debian
-    version: stretch
-  - distribution: debian
-    version: jessie
+  - distribution: packetferret/ansible-vxlan-evpn-for-campus
+    version: 0.0.1
 
 services:
   - docker
 
 before_install:
   - 'sudo docker pull ${distribution}:${version}'
-  - 'sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis'
+  - 'sudo docker build --no-cache --rm --file=files/docker/ansible/Dockerfile --tag=${distribution}-${version}:ansible travis'
 
 script:
   - container_id=$(mktemp)
