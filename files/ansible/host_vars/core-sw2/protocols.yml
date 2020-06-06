@@ -10,8 +10,13 @@ configuration:
               unicast: null
           multipath: null
           neighbor:
-            - description: "access-sw1"
-              name: 192.168.100.5
+            - description: "core-sw1"
+              name: 192.168.100.0
+            - description: "core-sw1"
+              name: 192.168.100.2
+          local_as: 
+            as_number: 65012
+          peer_as: 65011
           type: external
 
         # ### OVERLAY

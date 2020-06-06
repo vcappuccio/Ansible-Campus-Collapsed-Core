@@ -136,7 +136,7 @@ routing-instances {
             {% if each.routing_options.static is defined %}
             {% for each in each.routing_options.static.route %}
             {% for route in each.next_hop %}
-            route {{ each.name }} next-hop {{ route }};
+            static route {{ each.name }} next-hop {{ route }};
             {% endfor %}
             {% endfor %}
             {% endif %}

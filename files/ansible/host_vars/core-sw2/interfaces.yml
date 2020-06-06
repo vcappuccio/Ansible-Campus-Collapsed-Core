@@ -2,25 +2,73 @@ configuration:
   interfaces:
     interface:
       # ### PHYSICAL INTERFACES
-      - name: ge-0/0/3
-        description: "Connected to campus-tme-ex4300-01 (member of ae11)"
+      - name: xe-0/0/1
+        description: "Connected to access-sw1 (member of ae11)"
         ether_options:
           ieee_802.3ad:
             bundle: ae11
 
-      - name: ge-0/0/46
+      - name: xe-0/0/2
+        description: "Connected to access-sw2 (member of ae12)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae12
+
+      - name: xe-0/0/3
+        description: "Connected to access-sw3 (member of ae13)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae13
+
+      - name: xe-0/0/4
+        description: "Connected to access-sw4 (member of ae14)"
+        ether_options:
+          ieee_802.3ad:
+            bundle: ae14
+
+      - name: xe-0/0/9
         mtu: 9100
         unit:
           name: "0"
-          description: "Connected to campus-tme-ex4650-01"
+          description: "Connected to core-sw1"
           family:
             inet:
               address:
-                name: "192.168.100.5/31"
+                name: "192.168.100.1/31"
+
+      - name: xe-0/0/10
+        mtu: 9100
+        unit:
+          name: "0"
+          description: "Connected to core-sw1"
+          family:
+            inet:
+              address:
+                name: "192.168.100.3/31"
+
+      - name: xe-0/0/11
+        mtu: 9100
+        unit:
+          name: "0"
+          description: "Connected to firewall1"
+          family:
+            inet:
+              address:
+                name: "192.168.255.3/31"
+
+      # ### MGMT INTERFACE
+      - name: em0
+        unit:
+          name: "0"
+          description: "out of band interface"
+          family:
+            inet:
+              address:
+                name: "{{ ansible_host }}/24"
 
       # ### AE INTERFACES
       - name: ae11
-        description: "To-Access-1 (members: ge-0/0/3)"
+        description: "To-Access-1 (members: xe-0/0/1)"
         apply_groups:
           - AE_MTU_JUMBO
           - AE_LACP_BOND
@@ -38,10 +86,10 @@ configuration:
                 interface_mode: trunk
                 vlan:
                   members:
-                    [VLAN-201 VLAN-202 VLAN-101 VLAN-102 VLAN-301 VLAN-302]
+                    "[VLAN-101 VLAN-102 VLAN-201 VLAN-202 VLAN-301 VLAN-302]"
 
       - name: ae12
-        description: "To-Access-2 (members: ge-0/0/6)"
+        description: "To-Access-2 (members: xe-0/0/2)"
         apply_groups:
           - AE_MTU_JUMBO
           - AE_LACP_BOND
@@ -59,7 +107,49 @@ configuration:
                 interface_mode: trunk
                 vlan:
                   members:
-                    [VLAN-201 VLAN-202 VLAN-101 VLAN-102 VLAN-301 VLAN-302]
+                    "[VLAN-101 VLAN-102 VLAN-201 VLAN-202 VLAN-301 VLAN-302]"
+
+      - name: ae13
+        description: "To-Access-3 (members: xe-0/0/3)"
+        apply_groups:
+          - AE_MTU_JUMBO
+          - AE_LACP_BOND
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: 00:40:00:00:00:03
+        esi:
+          all_active: null
+          identifier: 00:11:11:11:11:11:11:11:11:03
+        unit:
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: trunk
+                vlan:
+                  members:
+                    "[VLAN-101 VLAN-102 VLAN-201 VLAN-202 VLAN-301 VLAN-302]"
+
+      - name: ae14
+        description: "To-Access-4 (members: xe-0/0/4)"
+        apply_groups:
+          - AE_MTU_JUMBO
+          - AE_LACP_BOND
+        aggregated_ether_options:
+          lacp:
+            active: null
+            system_id: 00:40:00:00:00:04
+        esi:
+          all_active: null
+          identifier: 00:11:11:11:11:11:11:11:11:04
+        unit:
+          - name: "0"
+            family:
+              ethernet_switching:
+                interface_mode: trunk
+                vlan:
+                  members:
+                    "[VLAN-101 VLAN-102 VLAN-201 VLAN-202 VLAN-301 VLAN-302]"
 
       # ### IRB INTERFACES
       - name: irb

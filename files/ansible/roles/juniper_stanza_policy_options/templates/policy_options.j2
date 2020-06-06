@@ -55,6 +55,8 @@ policy-options {
                 {% for item in each_term.from.route_filter %}
                 {% if item.exact is defined %}
                 route-filter {{ item.address }} exact;
+                {% elif item.orlonger is defined %}
+                route-filter {{ item.address }} orlonger;
                 {% else %}
                 route-filter {{ item.address }}
                 {% endif %}
@@ -169,6 +171,8 @@ policy-options {
             {# ------------------------------------------------------- #}
             {% elif each_term.then.discard is defined %}
             then discard;
+            {% elif each_term.then.reject is defined %}
+            then reject;
             {# ------------------------------------------------------------ #}
             {# policy-options.policy-statements.term.then.load_balance      #}
             {# ------------------------------------------------------------ #}

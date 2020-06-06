@@ -2,7 +2,7 @@ configuration:
   routing_options:
     forwarding_table:
       export: 
-        - "POLICY_LB"
+        - "ecmp_policy"
       ecmp_fast_reroute: 
         - null
     router_id: "{{ device.lo0.ipv4 }}"
