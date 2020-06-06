@@ -10,7 +10,7 @@ services:
 
 before_install:
   - 'sudo docker pull ${distribution}:${version}'
-  - 'sudo docker build --no-cache --rm --file=${PWD}/files/docker/ansible/Dockerfile --tag=${distribution}-${version}'
+  - 'sudo docker build -t ${distribution}:${version} files/docker/ansible/'
 
 script:
   - 'docker run -it --rm -v ${PWD}/files/:/home/tmp/files -w /home/tmp/files/ansible/ ${distribution}:${version} ansible-playbook pb.configuration.network.yml --syntax-check'
