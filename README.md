@@ -27,6 +27,15 @@ The crux of this project is executing the *[pb.configuration.network.yml](https:
 - `Makefile` included to shortcut many of the commands
 - Docker container provided for those that want execute in an isolated environment.
 
+## Topology
+
+Here is a high level perspective of what the playbook will build without any adjustments made to the yaml files stored within the respective `group_vars` and `host_vars` directories
+
+### Campus Collapsed Core Diagram
+
+[![campus collapsed core](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/campus_collapsed_core_01.png)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/campus_collapsed_core_01.png)
+
+
 ## Execution
 
 The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference. As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands.
