@@ -14,7 +14,7 @@ The network designs available for you here are based upon *[Juniper's Validated 
 
 ## How to use this project
 
-The crux of this project is executing the *[pb.configuration.network.yml](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/campus_v1/pb.configuration.network.yml)* playbook found in `/files/ansible/` directory. Taking a peek at this relatively simple playbook, we can see that there are just five tasks executed:
+The crux of this project is executing the *[pb.configuration.network.yml](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/ansible/pb.configuration.network.yml)* playbook found in `/files/ansible/` directory. Taking a peek at this relatively simple playbook, we can see that there are just five tasks executed:
 
 >1. validate that Ansible is running at least version 2.7.8
 >2. remove and rebuild local directories that hold our generated configurations
