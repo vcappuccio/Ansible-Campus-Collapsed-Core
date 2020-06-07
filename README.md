@@ -103,7 +103,7 @@ These are roles that will help you perform network validation on the status of y
 
 This role manages the local directories on your workstation. It will remove the previous `config/` directory and make sure an empty one replaces it before storing the completed/assembled configurations within it.
 
-[![make run](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)
+[![config_files](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/config_files.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/config_files.gif)
 
 > Look in `config/` directory after your playbook is executed, this is where your assembled configurations are stored.
 
