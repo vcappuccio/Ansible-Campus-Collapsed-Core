@@ -45,32 +45,43 @@ The execution of this playbook can be acheived in multiple ways, experiment with
 
 This is a personal preference, but this is a very clean method to run the playbook as it already manages all of your Python package dependencies. Within the root directory, you will run two commands to build and run the dedicated docker container.
 
+#### Building the Ansible container
+
+This command will build the container image to be used by ansible
+
 ```sh
 make build
+```
+
+> *note: the `make build` command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two of wasted time*
+
+#### Building the configurations only (no apply)
+
+If you would only like to build the configurations to your local machine, and hold off on applying them to your live networking devices, run this command:
+
+```sh
+make config
+```
+
+#### Building the configuration and applying it to the devices
+
+If, instead, you would like to generate the configuraitons *AND* apply them to the live networking devices, run this command instead.
+
+```sh
 make ansible
 ```
 
-For my visual friends, refer to this gif as an example:
+For my visual friends, refer to these gifs as an example:
 
 [![make build](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_build.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_build.gif)
 
-
-> *note: the make build command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two of wasted time*
-
-
 [![make ansible](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_ansible.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_ansible.gif)
 
-### Running the Ansible playbook from your local workstation
+## Deep Dive on *HOW* this playbook works
 
-If Docker isn't your thing, or your workplace just simply prevents you from having any fun and you need to run everything outside of containers, simply run the following command in the project's root directory:
+For those that are interested in pulling this playbook apart, I have added the following descriptions to detail exactly how the playbook works:
 
-```sh
-make run
-```
-
-[![make run](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_run.gif)
-
-## A quick word on the roles used within this playbook
+### Roles used within this playbook
 
 This project is highly modular and will allow you adjust as needed to accomplish any design goal. For instance, if you wanted to use OSPF instead of BGP as the underlay, there is nothing that would stop you from updating the `protocols.yml` files to support that functionality. Because of this modularity, I felt it best to put all of the functionality of compiling these configurations within seperate roles, and then we can declare which types of devices should run through with roles (i.e. Firewalls should get the `security` stanza, but not data center switches)
 
@@ -78,29 +89,29 @@ This project is highly modular and will allow you adjust as needed to accomplish
 
 Here is a quick breakdown of the formatting of roles used within this playbook:
 
-### `juniper_stanza_` roles
+#### `juniper_stanza_` roles
 
 As you will see during the playbook's execution, each device will have every configuration stanza generated as a seperate, temporary file. The creation of these files is the result of our roles that start with the name `juniper_stanza_`
 
 Note that each one of these roles has a task in the `tasks/main.yml` file, and a templating file as `template/stanza_name.j2`. The former references the latter to produce a stanza of configuration, to be stored in the set of temporary directories `/tmp/ansible/{{ inventory_hostname }}/tmp`
 
-### `juniper_assemble_config` role
+#### `juniper_assemble_config` role
 
 This will be the role that compiles each individual stanza into a single, cohesive configuration. Unfortunately, we have to prepend an integer to the left side of the file name to force Ansible's module to load them in the correct sequence.
 
 A little ugly, but happy with the result.
 
-### `juniper_configuration_` roles
+#### `juniper_configuration_` roles
 
 This small subset of roles allows for the checking, diff'ing, and application of configurations to the devices live on the network. Currently these are disabled, allowing the playbook to merely render the configuration.
 
 If you'd like to apply the configurations to the devices at run time, then make sure all of the IP addresses and hostnames are correct in your `inventory.yml` file, or dynamic inventory source of truth (i.e. Netbox), and uncomment out these three roles in the main playbook `pb.configuration.network.yml` file.
 
-### `juniper_jsnapy_` roles
+#### `juniper_jsnapy_` roles
 
 These are roles that will help you perform network validation on the status of your VXLAN/EVPN enabled campus. Purely focused on validation operational state, but infinetly helpful in your day-to-day operations.
 
-### `localhost-build-dirs` role
+#### `localhost-build-dirs` role
 
 This role manages the local directories on your workstation. It will remove the previous `config/` directory and make sure an empty one replaces it before storing the completed/assembled configurations within it.
 
@@ -108,26 +119,13 @@ This role manages the local directories on your workstation. It will remove the 
 
 > Look in `config/` directory after your playbook is executed, this is where your assembled configurations are stored.
 
-## Dependencies
+## Project dependencies
 
-The dependencies required come back to your preferred deployment method.
-
-### Ansible on your local workstation
-
-You will need to install the Python packages to your local workstation. We highly encourage you to *[leverage python virtual environments](https://realpython.com/python-virtual-environments-a-primer/)* to avoid situations where you may overwrite your system's local python packages.
-
-Install the required python packages:
-
-```sh
-pip install -r files/docker/ansible/files/requirements.txt
-```
-
-### Ansible from within a Docker container
-
-If using Docker as your execution engine, you may not be surprised to learn that you'll need Docker installed on your local workstation. That's it!
+You may not be surprised to learn that you'll need Docker installed on your local workstation. That's it!
 
 *[Docker](https://docs.docker.com/get-docker/)*
 
+This requirement is an obvious moot point if you're using Ansible Tower to execute through a GUI.
 
 ### Optional:
 
