@@ -52,8 +52,19 @@ This command will build the container image to be used by ansible
 ```sh
 make build
 ```
+[![make build](files/images/make_build.gif)](files/images/make_build.gif)
 
 > *note: the `make build` command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two of wasted time*
+
+#### Building the configuration and applying it to the devices
+
+If, instead, you would like to generate the configuraitons *AND* apply them to the live networking devices, run this command.
+
+```sh
+make ansible
+```
+
+[![make ansible](files/images/make_ansible.gif)](files/images/make_ansible.gif)
 
 #### Building the configurations only (no apply)
 
@@ -62,20 +73,6 @@ If you would only like to build the configurations to your local machine, and ho
 ```sh
 make config
 ```
-
-#### Building the configuration and applying it to the devices
-
-If, instead, you would like to generate the configuraitons *AND* apply them to the live networking devices, run this command instead.
-
-```sh
-make ansible
-```
-
-For my visual friends, refer to these gifs as an example:
-
-[![make build](files/images/make_build.gif)](files/images/make_build.gif)
-
-[![make ansible](files/images/make_build.gif)](files/images/make_ansible.gif)
 
 ## Deep Dive on *HOW* this playbook works
 
