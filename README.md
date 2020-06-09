@@ -34,7 +34,7 @@ Here is a high level perspective of what the playbook will build without any adj
 
 ### Campus Collapsed Core Diagram
 
-[![campus collapsed core](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/campus_collapsed_core_01.png)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/campus_collapsed_core_01.png)
+[![campus collapsed core](files/images/collapsed_core.png)](files/images/collapsed_core.png)
 
 
 ## Execution
@@ -73,9 +73,9 @@ make ansible
 
 For my visual friends, refer to these gifs as an example:
 
-[![make build](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_build.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_build.gif)
+[![make build](files/images/make_build.gif)](files/images/make_build.gif)
 
-[![make ansible](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_ansible.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/make_ansible.gif)
+[![make ansible](files/images/make_build.gif)](files/images/make_ansible.gif)
 
 ## Deep Dive on *HOW* this playbook works
 
@@ -114,8 +114,6 @@ These are roles that will help you perform network validation on the status of y
 #### `localhost-build-dirs` role
 
 This role manages the local directories on your workstation. It will remove the previous `config/` directory and make sure an empty one replaces it before storing the completed/assembled configurations within it.
-
-[![config_files](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/config_files.gif)](https://github.com/packetferret/Ansible-VXLAN-EVPN-for-Campus/blob/master/files/images/config_files.gif)
 
 > Look in `config/` directory after your playbook is executed, this is where your assembled configurations are stored.
 
