@@ -12,5 +12,5 @@ before_install:
   - 'sudo docker pull ${distribution}:${version}'
 
 script:
-  - 'make build'
+  # - 'make build'
   - 'make config'
