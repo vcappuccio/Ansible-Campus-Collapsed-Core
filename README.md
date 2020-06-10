@@ -87,29 +87,29 @@ This project is highly modular and will allow you adjust as needed to accomplish
 
 Here is a quick breakdown of the formatting of roles used within this playbook:
 
-#### `juniper_stanza_` roles
+#### build_config_stanza roles
 
 As you will see during the playbook's execution, each device will have every configuration stanza generated as a seperate, temporary file. The creation of these files is the result of our roles that start with the name `juniper_stanza_`
 
 Note that each one of these roles has a task in the `tasks/main.yml` file, and a templating file as `template/stanza_name.j2`. The former references the latter to produce a stanza of configuration, to be stored in the set of temporary directories `/tmp/ansible/{{ inventory_hostname }}/tmp`
 
-#### `juniper_assemble_config` role
+#### assemble_config role
 
 This will be the role that compiles each individual stanza into a single, cohesive configuration. Unfortunately, we have to prepend an integer to the left side of the file name to force Ansible's module to load them in the correct sequence.
 
 A little ugly, but happy with the result.
 
-#### `juniper_configuration_` roles
+#### push_config roles
 
 This small subset of roles allows for the checking, diff'ing, and application of configurations to the devices live on the network. Currently these are disabled, allowing the playbook to merely render the configuration.
 
 If you'd like to apply the configurations to the devices at run time, then make sure all of the IP addresses and hostnames are correct in your `inventory.yml` file, or dynamic inventory source of truth (i.e. Netbox), and uncomment out these three roles in the main playbook `pb.configuration.network.yml` file.
 
-#### `juniper_jsnapy_` roles
+#### jsnapy roles
 
 These are roles that will help you perform network validation on the status of your VXLAN/EVPN enabled campus. Purely focused on validation operational state, but infinetly helpful in your day-to-day operations.
 
-#### `localhost-build-dirs` role
+#### localhost-build-dirs role
 
 This role manages the local directories on your workstation. It will remove the previous `config/` directory and make sure an empty one replaces it before storing the completed/assembled configurations within it.
 
