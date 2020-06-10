@@ -40,8 +40,10 @@
   file:
     path: "{{ configuration_directory }}"
     state: absent
+  run_once: True
 
 - name: create new temporary directory
   file:
     path: "{{ configuration_directory }}"
     state: directory
+  run_once: True
