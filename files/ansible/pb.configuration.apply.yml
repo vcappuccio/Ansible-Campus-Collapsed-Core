@@ -39,4 +39,3 @@
     # - { role: juniper_configuration_diff }
     - { role: juniper_configuration_check }
     - { role: juniper_configuration_apply }
-

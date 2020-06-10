@@ -37,19 +37,10 @@
     - { role: juniper_stanza_apply_groups }
     - { role: juniper_stanza_groups }
     - { role: juniper_stanza_system }
-    - {
-        role: juniper_stanza_event_options,
-        when: "'switch' in device.role",
-      }
+    - { role: juniper_stanza_event_options, when: "'switch' in device.role" }
     - { role: juniper_stanza_chassis }
-    - {
-        role: juniper_stanza_services,
-        when: "'firewall' in device.role",
-      }
-    - {
-        role: juniper_stanza_security,
-        when: "'firewall' in device.role",
-      }
+    - { role: juniper_stanza_services, when: "'firewall' in device.role" }
+    - { role: juniper_stanza_security, when: "'firewall' in device.role" }
     - { role: juniper_stanza_interfaces }
     - { role: juniper_stanza_snmp }
     - { role: juniper_stanza_forwarding_options }
@@ -68,7 +59,6 @@
     - { role: juniper_stanza_access }
     - { role: juniper_stanza_vlans }
     - { role: juniper_assemble_config }
-
 ### ---------------------------------------------------------------------------
 ### DEBUGGING A GENERATED CONFIGURATION
 ### ---------------------------------------------------------------------------
