@@ -1,4 +1,4 @@
-FROM centos/python-36-centos7:latest
+FROM alpine:3.11
 
 ### -------------------------------------------------
 ### Metadata information
@@ -13,12 +13,35 @@ LABEL build-date="2020606"
 ### -------------------------------------------------
 ### Install system Package
 ### -------------------------------------------------
-USER root
-RUN yum -y update 
-RUN yum -y install vim nmap wget telnet zsh tree
-RUN yum clean all
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-RUN rm -rf /tmp/* /var/tmp/*
+RUN apk --update --no-cache add \
+      ca-certificates \
+      git \
+      libxml2 \
+      libxml2-dev \
+      libxslt \
+      libxslt-dev \
+      openssh-client \
+      openssl \
+      python3\
+      rsync \
+      sshpass
+
+### -------------------------------------------------
+### Install additional dependencies
+### -------------------------------------------------
+RUN apk --update add --virtual \
+        .build-deps \
+        python3-dev \
+        libffi-dev \
+        openssl-dev \
+        build-base
+
+### -------------------------------------------------
+### Upgrade pip
+### -------------------------------------------------
+RUN pip3 install --upgrade \
+        pip \
+        cffi
 
 ### -------------------------------------------------
 ### Change directory to /home/tmp
@@ -35,14 +58,12 @@ RUN pip install --upgrade pip
 ### -------------------------------------------------
 ### Install Ansible Galaxy roles
 ### -------------------------------------------------
-RUN ansible-galaxy install juniper.junos
+RUN ansible-galaxy install juniper.junos -p /opt/app-root/src/.ansible/roles
 
 ### -------------------------------------------------
 ### Copy local files to container
 ### -------------------------------------------------
 COPY config/jsnapy.cfg /etc/jsnapy/jsnapy.cfg
-COPY config/.zshrc /opt/app-root/src/.zshrc
-COPY config/bullet-train_custom.zsh-theme /opt/app-root/src/.oh-my-zsh/themes/bullet-train_custom.zsh-theme
 
 ### -------------------------------------------------
 ### Environmentals
@@ -50,3 +71,9 @@ COPY config/bullet-train_custom.zsh-theme /opt/app-root/src/.oh-my-zsh/themes/bu
 ENV HAPPY True
 ENV SHELL /usr/bin/zsh
 ENV ANSIBLE_CONFIG /home/tmp/files/ansible/ansible.cfg
+
+### -------------------------------------------------
+### Cleanup work
+### -------------------------------------------------
+RUN apk del .build-deps 
+RUN rm -rf /var/cache/apk/*

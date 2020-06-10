@@ -3,7 +3,7 @@ SHELL := /usr/bin/env bash
 .PHONY: help ansible apply build config
 
 DOCKER_IMG = packetferret/ansible-vxlan-evpn-for-campus
-DOCKER_TAG = 0.0.1
+DOCKER_TAG = 0.0.2
 
 help:
 	@echo ''
