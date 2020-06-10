@@ -36,6 +36,6 @@
   connection: local
   gather_facts: False
   roles:
-    # - { role: juniper_configuration_diff }
-    - { role: juniper_configuration_check }
-    - { role: juniper_configuration_apply }
+    # - { role: push_config/diff }
+    - { role: push_config/check }
+    - { role: push_config/apply }

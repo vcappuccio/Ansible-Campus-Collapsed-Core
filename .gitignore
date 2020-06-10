@@ -2,3 +2,4 @@ backup/*
 files/example_configs/*.conf
 .vscode
 files/ansible/filter_plugins/__pycache__/*
+.DS_Store
