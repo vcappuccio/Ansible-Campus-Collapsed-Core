@@ -17,7 +17,7 @@
 
 - name: "setting device_interfaces variable"
   set_fact:
-    device_interfaces: "{{ device_interfaces.json }}"
+    device_interfaces: "{{ device_interfaces }}"
 
 - name: "print device_interfaces variable"
   debug:
