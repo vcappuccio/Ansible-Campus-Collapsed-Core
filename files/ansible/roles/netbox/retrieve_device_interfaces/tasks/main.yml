@@ -15,9 +15,9 @@
   with_items: "{{ site_devices }}"
   register: device_interfaces
 
-# - name: "setting device_interfaces variable"
-#   set_fact:
-#     device_interfaces: "{{ device_interfaces.json.results }}"
+- name: "setting device_interfaces variable"
+  set_fact:
+    device_interfaces: "{{ device_interfaces.json }}"
 
 - name: "print device_interfaces variable"
   debug:
