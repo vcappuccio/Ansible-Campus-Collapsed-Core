@@ -29,8 +29,8 @@ class FilterModule(object):
             else:
                 pass
         
-        asdf = {"core": core_devices}
-        qwert = {"access": access_devices}
-        site_devices.append(asdf)
-        site_devices.append(qwert)
+        core_devices = {"core": core_devices}
+        access_devices = {"access": access_devices}
+        site_devices.append(core_devices)
+        site_devices.append(access_devices)
         return site_devices
