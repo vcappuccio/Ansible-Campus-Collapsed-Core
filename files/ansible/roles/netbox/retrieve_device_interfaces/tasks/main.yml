@@ -3,7 +3,7 @@
 ### ---------------------------------------------------------------------------
 - name: "Device interfaces from Netbox"
   uri:
-    url: "{{ netbox.base_url }}/interfaces/?device={{ site_devices.name }}"
+    url: "{{ netbox.base_url }}/interfaces/?device={{ item.name }}"
     method: GET
     return_content: yes
     status_code: "200"
@@ -12,6 +12,7 @@
       Authorization: "Token {{ netbox.api_token }}"
     force_basic_auth: yes
     validate_certs: false
+  with_items: "{{ site_devices }}"
   register: device_interfaces
 
 - name: "setting device_interfaces variable"
