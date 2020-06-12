@@ -2,10 +2,10 @@ class FilterModule(object):
 
     def filters(self):
         return {
-            'cleanup_device_data': self.cleanup_device_data,
+            'cleanup_devices': self.cleanup_devices,
         }
 
-    def cleanup_device_data(self, value):
+    def cleanup_devices(self, value):
         site_devices = []
         device = {}
         for each in value:
