@@ -7,8 +7,8 @@ class FilterModule(object):
 
     def cleanup_devices(self, value):
         site_devices = []
-        device = {}
         for each in value:
+            device = {}
             device['name'] = each['name']
             device['tenant'] = each['tenant']['slug']
             device['platform'] = each['platform']['name']
