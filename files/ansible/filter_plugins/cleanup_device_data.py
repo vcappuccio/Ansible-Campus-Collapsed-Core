@@ -28,7 +28,7 @@ class FilterModule(object):
                 access_devices.append(access)
             else:
                 pass
-        
-        site_devices.append("core": core_devices)
-        site_devices.append("access": access_devices)
+            
+        site_devices.append(core_devices)
+        site_devices.append(access_devices)
         return site_devices
