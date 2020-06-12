@@ -3,7 +3,7 @@
 ### ---------------------------------------------------------------------------
 - name: "Device interfaces from Netbox"
   uri:
-    url: "{{ netbox.base_url }}/interfaces/?device={{ item.name }}"
+    url: "{{ netbox.base_url }}/dcim/interfaces/?device={{ item.name }}"
     method: GET
     return_content: yes
     status_code: "200"
