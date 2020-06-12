@@ -7,24 +7,24 @@ class FilterModule(object):
 
     def cleanup_device_data(self, value):
         site = {}
-        cpe = {}
-        switch = {}
+        core = {}
+        access = {}
         for each in value:
-            if each["device_role"]["name"] == 'sdwan-cpe':
-                cpe['name'] = each['name']
-                cpe['tenant'] = each['tenant']['slug']
-                cpe['platform'] = each['platform']['name']
-                cpe['serial'] = each['serial']
-                cpe['site'] = each['site']['slug']
+            if each["device_role"]["name"] == 'core':
+                core['name'] = each['name']
+                core['tenant'] = each['tenant']['slug']
+                core['platform'] = each['platform']['name']
+                core['serial'] = each['serial']
+                core['site'] = each['site']['slug']
             elif each["device_role"]["name"] == 'switch-l2':
-                switch['name'] = each['name']
-                switch['tenant'] = each['tenant']['slug']
-                switch['platform'] = each['platform']['name']
-                switch['serial'] = each['serial']
-                switch['site'] = each['site']['slug']
+                access['name'] = each['name']
+                access['tenant'] = each['tenant']['slug']
+                access['platform'] = each['platform']['name']
+                access['serial'] = each['serial']
+                access['site'] = each['site']['slug']
             else:
                 pass
         
-        site['cpe'] = cpe
-        site['switch'] = switch
+        site['core'] = core
+        site['access'] = access
         return site
