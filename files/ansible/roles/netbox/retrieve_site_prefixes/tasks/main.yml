@@ -8,13 +8,13 @@
 
 - name: "Site prefixes from Netbox"
   uri:
-    url: "{{ netbox.baseurl }}/ipam/prefixes/?site={{ cleaned_site_name }}"
+    url: "{{ netbox.base_url }}/ipam/prefixes/?site={{ cleaned_site_name }}"
     method: GET
     return_content: yes
     status_code: "200"
     headers:
       Content-Type: "application/json"
-      Authorization: "Token {{ netbox.apitoken }}"
+      Authorization: "Token {{ netbox.api_token }}"
     force_basic_auth: yes
     validate_certs: false
   register: site_prefixes
