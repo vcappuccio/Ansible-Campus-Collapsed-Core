@@ -16,7 +16,7 @@ class FilterModule(object):
                 core['platform'] = each['platform']['name']
                 core['serial'] = each['serial']
                 core['site'] = each['site']['slug']
-            elif each["device_role"]["name"] == 'switch-l2':
+            elif each["device_role"]["name"] == 'access':
                 access['name'] = each['name']
                 access['tenant'] = each['tenant']['slug']
                 access['platform'] = each['platform']['name']
