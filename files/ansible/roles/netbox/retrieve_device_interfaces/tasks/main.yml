@@ -12,6 +12,7 @@
       Authorization: "Token {{ netbox.api_token }}"
     force_basic_auth: yes
     validate_certs: false
+  loop: site_devices
   register: device_interfaces
 
 - name: "setting device_interfaces variable"

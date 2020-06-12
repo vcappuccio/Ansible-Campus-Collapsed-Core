@@ -31,7 +31,7 @@
 
 - name: "cleaning up site data into dictionary values"
   set_fact:
-    site_devices: "{{ site_devices | cleanup_device_data }}"
+    site_devices: "{{ site_devices | cleanup_devices }}"
 
 - debug:
     msg: "{{ site_devices }}"
