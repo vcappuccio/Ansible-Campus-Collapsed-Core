@@ -13,6 +13,5 @@
       ### ---------------------------------------------------------------------------
       - { role: netbox/retrieve_device_data }
       - { role: netbox/retrieve_site_data }
-      - { role: netbox/retrieve_site_prefixes }
       - { role: netbox/retrieve_device_prefixes }
       - { role: netbox/debug_data }
