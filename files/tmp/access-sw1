@@ -1,0 +1,95 @@
+{
+    "junos": {
+        "HOME": "/var/home/automation",
+        "RE0": {
+            "last_reboot_reason": "Router rebooted after a normal shutdown.",
+            "mastership_state": "master",
+            "model": "QFX Routing Engine",
+            "status": "Absent",
+            "up_time": "22 hours, 50 minutes, 24 seconds"
+        },
+        "RE1": null,
+        "RE_hw_mi": false,
+        "current_re": [
+            "master",
+            "node",
+            "fwdd",
+            "member",
+            "pfem",
+            "re0",
+            "fpc0",
+            "localre"
+        ],
+        "domain": null,
+        "fqdn": "access-sw1",
+        "has_2RE": false,
+        "hostname": "access-sw1",
+        "hostname_info": {
+            "fpc0": "access-sw1"
+        },
+        "ifd_style": "CLASSIC",
+        "junos_info": {
+            "fpc0": {
+                "object": {
+                    "build": 10,
+                    "major": [
+                        19,
+                        4
+                    ],
+                    "minor": "1",
+                    "type": "R"
+                },
+                "text": "19.4R1.10"
+            }
+        },
+        "master": "RE0",
+        "master_state": true,
+        "model": "VQFX-10000",
+        "model_info": {
+            "fpc0": "VQFX-10000"
+        },
+        "personality": null,
+        "re_info": {
+            "default": {
+                "0": {
+                    "last_reboot_reason": "Router rebooted after a normal shutdown.",
+                    "mastership_state": "master",
+                    "model": "QFX Routing Engine",
+                    "status": "Absent"
+                },
+                "default": {
+                    "last_reboot_reason": "Router rebooted after a normal shutdown.",
+                    "mastership_state": "master",
+                    "model": "QFX Routing Engine",
+                    "status": "Absent"
+                }
+            }
+        },
+        "re_master": {
+            "default": "0"
+        },
+        "re_name": "fpc0",
+        "serialnumber": "17408483844",
+        "srx_cluster": null,
+        "srx_cluster_id": null,
+        "srx_cluster_redundancy_group": null,
+        "switch_style": "VLAN_L2NG",
+        "vc_capable": true,
+        "vc_fabric": false,
+        "vc_master": "0",
+        "vc_mode": "Enabled",
+        "version": "19.4R1.10",
+        "version_RE0": null,
+        "version_RE1": null,
+        "version_info": {
+            "build": 10,
+            "major": [
+                19,
+                4
+            ],
+            "minor": "1",
+            "type": "R"
+        },
+        "virtual": null
+    }
+}
