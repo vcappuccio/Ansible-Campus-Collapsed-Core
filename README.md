@@ -32,7 +32,7 @@ The crux of this project is to build the device configurations locally by execut
 
 Here is a high level perspective of what the playbook will build without any adjustments made to the yaml files stored within the respective `group_vars` and `host_vars` directories
 
-### Campus Fabric with Core-Distribution CRB Core Diagram
+### Campus Fabric with Collapsed Core Diagram
 
 [![campus collapsed core](files/images/Collapsed-Core.png)](files/images/Collapsed-Core.png)
 
