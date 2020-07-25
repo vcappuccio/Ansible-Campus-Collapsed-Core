@@ -29,7 +29,7 @@ backup:
 	-v $(PWD)/files/:/home/tmp/files \
 	-v $(PWD)/files/tmp:/tmp \
 	-w /home/tmp/files/ansible/ \
-	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.configuration.backup.yml 
+	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook bonus_playbooks/pb.configuration.backup.yml 
 
 bootstrap:
 	docker run -it \
@@ -56,7 +56,7 @@ netbox-get:
 	-v $(PWD)/files/:/home/tmp/files \
 	-v $(PWD)/files/tmp:/tmp \
 	-w /home/tmp/files/ansible/ \
-	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.netbox.retrieve.info.yml
+	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook bonus_playbooks/pb.netbox.retrieve.info.yml
 
 shell:
 	docker run -it \
