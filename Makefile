@@ -2,7 +2,7 @@ SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
 .PHONY: help ansible apply backup bootstrap build config shell netbox-get
 
-DOCKER_IMG = packetferret/ansible-campus-fabric-collapsed-core
+DOCKER_IMG = packetferret/ansible-campus-collapsed-core
 DOCKER_TAG = 0.0.1
 
 help:
