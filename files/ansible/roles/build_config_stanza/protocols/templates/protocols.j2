@@ -1,6 +1,6 @@
 #jinja2: lstrip_blocks: "True (or False)", trim_blocks: "True (or False)"
 {#- ---------------------------------------------------------------------------------- #}
-{# configuration.protocols                                                                           #}
+{# configuration.protocols                                                             #}
 {# ---------------------------------------------------------------------------------- -#}
 {% if configuration.protocols is defined %}
 protocols {
@@ -120,7 +120,7 @@ protocols {
             {% endif %}
             {# ----------------------------------------------------------------------------------- #}
             {# multipath                                                                           #}
-            {# --------------------------------------`-------------------------------------------- -#}
+            {# --------------------------------------`------------------------------------------- -#}
             {% if each.multipath is defined %}
             multipath;
             {% endif %}
@@ -192,6 +192,9 @@ protocols {
             neighbor {{ each.neighbor.name }};
             {% endif %}
             {% endif %}
+            {% endif %}
+            {% if each.vpn_apply_export is defined %}
+            vpn-apply-export;
             {% endif %}
         }
         {% endfor %}
@@ -278,6 +281,9 @@ protocols {
             {% endif %}
         }
         {% endif %}
+        {% if configuration.protocols.bgp.group.vpn_apply_export is defined %}
+        vpn-apply-export;
+        {% endif %}
         {% endif %}
     }
     {% endif %}
@@ -300,7 +306,7 @@ protocols {
         {% endif %}
         {% endif %}
         {# ----------------------------------------------------------------------------------- #}
-        {# interfaces                                                                       #}
+        {# interfaces                                                                          #}
         {# ---------------------------------------------------------------------------------- -#}
         {% for iface in configuration.protocols.isis.interface %}
         {% if iface|length > 1 %}
@@ -606,11 +612,17 @@ protocols {
         area {{ each.name }} {
             {# Multiple interfaces #}
             {% for iface in each.interface %}
+            {% if iface.interface_type is defined %}
             interface {{ iface.name }} {
-                {% if iface.interface_type is defined %}
                 interface-type {{ iface.interface_type }};
-                {% endif %}
             }
+            {% elif iface.passive is defined %}
+            interface {{ iface.name }} {
+                passive;
+            }
+            {% else %}
+            interface {{ iface.name }};
+            {% endif %}
             {% endfor %}
         }
         {% endfor %}

@@ -1,9 +1,9 @@
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
-.PHONY: help ansible apply build config
+.PHONY: help ansible apply backup bootstrap build config shell netbox-get
 
-DOCKER_IMG = packetferret/ansible-vxlan-evpn-for-campus
-DOCKER_TAG = 0.0.2
+DOCKER_IMG = packetferret/ansible-campus-fabric-collapsed-core
+DOCKER_TAG = 0.0.1
 
 help:
 	@echo ''
@@ -19,8 +19,25 @@ apply:
 	docker run -it \
 	--rm \
 	-v $(PWD)/files/:/home/tmp/files \
+	-v $(PWD)/files/tmp:/tmp \
 	-w /home/tmp/files/ansible/ \
 	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.configuration.apply.yml 
+
+backup:
+	docker run -it \
+	--rm \
+	-v $(PWD)/files/:/home/tmp/files \
+	-v $(PWD)/files/tmp:/tmp \
+	-w /home/tmp/files/ansible/ \
+	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.configuration.backup.yml 
+
+bootstrap:
+	docker run -it \
+	--rm \
+	-v $(PWD)/files/:/home/tmp/files \
+	-v $(PWD)/files/tmp:/tmp \
+	-w /home/tmp/files/ansible/ \
+	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.configuration.bootstrap.yml 
 
 build:
 	docker build -t $(DOCKER_IMG):$(DOCKER_TAG) files/docker/ansible/
@@ -29,13 +46,22 @@ config:
 	docker run -it \
 	--rm \
 	-v $(PWD)/files/:/home/tmp/files \
+	-v $(PWD)/files/tmp:/tmp \
 	-w /home/tmp/files/ansible/ \
 	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.configuration.build.yml
 
-# ### side note: simplifying by removing local ansible execution
-# ### until someone declares that they want it.
-# ### will push foward with only docker-based deployments for now
+netbox-get:
+	docker run -it \
+	--rm \
+	-v $(PWD)/files/:/home/tmp/files \
+	-v $(PWD)/files/tmp:/tmp \
+	-w /home/tmp/files/ansible/ \
+	$(DOCKER_IMG):$(DOCKER_TAG) ansible-playbook pb.netbox.retrieve.info.yml
 
-# run:
-# 	cd $(PWD)/files/ansible/; \
-# 	ansible-playbook pb.configuration.network.yml 
+shell:
+	docker run -it \
+	--rm \
+	-v $(PWD)/files/:/home/tmp/files \
+	-v $(PWD)/files/tmp:/tmp \
+	-w /home/tmp/files/ansible/ \
+	$(DOCKER_IMG):$(DOCKER_TAG) /bin/sh

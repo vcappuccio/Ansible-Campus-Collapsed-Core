@@ -12,38 +12,28 @@
 ### -------------------------------------------------
 - name: remove previous temporary build directory
   file:
-    path: "{{ build_directory }}"
+    path: "{{ build_directory_temp }}"
     state: absent
 
 - name: create new temporary directory
   file:
-    path: "{{ build_directory }}"
-    state: directory
-
-### -------------------------------------------------
-### REMOVE AND RECREATE FACTS DIRECTORY
-### -------------------------------------------------
-- name: remove previous facts directory
-  file:
-    path: "{{ facts_directory }}"
-    state: absent
-
-- name: create facts directory
-  file:
-    path: "{{ facts_directory }}"
+    path: "{{ build_directory_temp }}"
     state: directory
 
 ### -------------------------------------------------
 ### REMOVE AND RECREATE CONFIG DIRECTORY
 ### -------------------------------------------------
-- name: remove any previous config directory
+- name: remove any previous config files
   file:
-    path: "{{ configuration_directory }}"
+    path: "{{ completed_config_file }}"
     state: absent
-  run_once: True
 
-- name: create new temporary directory
+- name: remove any previous build directory complete
   file:
-    path: "{{ configuration_directory }}"
+    path: "{{ build_directory_complete }}"
+    state: absent
+
+- name: create new build_directory_complete
+  file:
+    path: "{{ build_directory_complete }}"
     state: directory
-  run_once: True

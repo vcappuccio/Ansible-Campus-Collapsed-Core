@@ -1,0 +1,23 @@
+configuration:
+  vlans:
+    vlan:
+      - name: vlan_1
+        description: "MANAGEMENT VLAN"
+        vlan_id: "1"
+        vxlan:
+          vni: 5001
+          ingress_node_replication: null
+
+      - name: vlan_2
+        description: "PC VLAN"
+        vlan_id: "2"
+        vxlan:
+          vni: 5002
+          ingress_node_replication: null
+
+      - name: vlan_3
+        description: "WIRELESS VLAN"
+        vlan_id: "3"
+        vxlan:
+          vni: 5003
+          ingress_node_replication: null

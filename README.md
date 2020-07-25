@@ -1,12 +1,12 @@
-# Ansible VXLAN-EVPN for Campus
+# Ansible Campus Fabric Core Distribution CRB
 
 [![N|Solid](https://upload.wikimedia.org/wikipedia/commons/3/31/Juniper_Networks_logo.svg)](https://www.juniper.net/documentation/solutions/en_US/campus)
 
-[![Build Status](https://travis-ci.org/packetferret/Ansible-VXLAN-EVPN-for-Campus.svg?branch=master)](https://travis-ci.org/packetferret/Ansible-VXLAN-EVPN-for-Campus)
+[![Build Status](https://travis-ci.org/packetferret/Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG.svg?branch=master)](https://travis-ci.org/packetferret/Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG)
 
 ## Overview
 
-`Ansible-VXLAN-EVPN-for-Campus` is an easier way to deploy a VXLAN / EVPN fabric with Juniper's campus solutions. 
+`Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG` is my personal EVE-NG lab version of the official repo `Ansible-Campus-Fabric-Core-Distribution-CRB`.
 
 This project is based on *[Infrastructure-As-Code](https://dev.to/fedekau/infrastructure-as-code-a-beginners-perspective-2l8k)* concepts, where all elements of a device's configuration as stored in a format of `key:value` pairs and stored in a source-code management system such as Github or Gitlab. While not required for successful deployments, we at Juniper encourage network devops teams to *[leverage best practicies with git](https://dev.to/bholmesdev/git-github-best-practices-for-teams-opinionated-28h7)*.
 
@@ -14,11 +14,11 @@ The network designs available for you here are based upon *[Juniper's Validated 
 
 ## How to use this project
 
-The crux of this project is to build the device configurations locally by executing the *[files/ansible/pb.configuration.build.yml](files/ansible/pb.configuration.build.yml)* playbook and applying the generated configurations with the *[files/ansible/pb.configuration.build.yml](files/ansible/pb.configuration.build.yml)* playbook; both playbooks are found in the `files/ansible` directory. Taking a peek at this relatively simple workflow, we can see that there are just five tasks executed:
+The crux of this project is to build the device configurations locally by executing the *[files/ansible/pb.configuration.build.yml](files/ansible/pb.configuration.build.yml)* playbook and applying the generated configurations with the *[files/ansible/pb.configuration.apply.yml](files/ansible/pb.configuration.apply.yml)* playbook; both playbooks are found in the `files/ansible` directory. Taking a peek at this relatively simple workflow, we can see that there are just five tasks executed:
 
 >1. validate that Ansible is running at least version 2.7.8
 >2. remove and rebuild local directories that hold our generated configurations
->3. build files to host the various stanzas of a Juniper configuration 
+>3. build files to host the various stanzas of a Juniper configuration
 >4. assemble all stanza files into a full device configuration
 >5. push the configuration to the networking device
 
@@ -26,16 +26,15 @@ The crux of this project is to build the device configurations locally by execut
 
 - `Makefile` included to shortcut many of the commands
 - Docker container provided for those that want execute in an isolated environment.
-- EVE-NG lab for importing my toplogy has been added in `files/eve-ng_lab` 
+- EVE-NG lab for importing my toplogy has been added in `files/eve-ng_lab`
 
 ## Topology
 
 Here is a high level perspective of what the playbook will build without any adjustments made to the yaml files stored within the respective `group_vars` and `host_vars` directories
 
-### Campus Collapsed Core Diagram
+### Campus Fabric with Core-Distribution CRB Core Diagram
 
-[![campus collapsed core](files/images/collapsed_core.png)](files/images/collapsed_core.png)
-
+[![campus collapsed core](files/images/Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG.png)](files/images/Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG_small.png)
 
 ## Execution
 
@@ -53,19 +52,7 @@ This command will build the container image to be used by ansible
 make build
 ```
 
-[![make build](files/images/make_build.gif)](files/images/make_build.gif)
-
-> *note: the `make build` command only needs to be ran once; subsequent executions of the command will not hurt anything, but will add a second or two of wasted time*
-
-#### Building the configuration and applying it to the devices
-
-If, instead, you would like to generate the configuraitons *AND* apply them to the live networking devices, run this command.
-
-```sh
-make ansible
-```
-
-[![make ansible](files/images/make_ansible.gif)](files/images/make_ansible.gif)
+> *note: the `make build` command only needs to be run once; subsequent executions of the command will not hurt anything, but will add a second or two of wasted time*
 
 #### Building the configurations only (no apply)
 
@@ -73,6 +60,14 @@ If you would only like to build the configurations to your local machine, and ho
 
 ```sh
 make config
+```
+
+#### Building the configuration and applying it to the devices
+
+If, instead, you would like to generate the configuraitons *AND* apply them to the live networking devices, run this command.
+
+```sh
+make ansible
 ```
 
 ## Deep Dive on *HOW* this playbook works
@@ -123,7 +118,7 @@ You may not be surprised to learn that you'll need Docker installed on your loca
 
 This requirement is an obvious moot point if you're using Ansible Tower to execute through a GUI.
 
-### Optional:
+### Optional
 
 Protect your `secrets.yml` file by *[using Ansible-Vault to encrypt it with a password](https://docs.ansible.com/ansible/latest/user_guide/vault.html)*.
 

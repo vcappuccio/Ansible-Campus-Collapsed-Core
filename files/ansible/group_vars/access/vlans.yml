@@ -1,29 +1,14 @@
 configuration:
   vlans:
     vlan:
-      # ### EMPLOYEE NETWORKS
-      - name: VLAN-101
-        description: "Employee-Wired-VLAN"
-        vlan_id: "101"
+      - name: vlan_1
+        description: "vlan_1"
+        vlan_id: "1"
 
-      - name: VLAN-102
-        description: "Employee-Wireless-VLAN"
-        vlan_id: "102"
+      - name: vlan_2
+        description: "vlan_2"
+        vlan_id: "2"
 
-      # ### GUEST NETWORKS
-      - name: VLAN-201
-        description: "Guest Wired Subnet"
-        vlan_id: "201"
-
-      - name: VLAN-202
-        description: "Guest Wireless Subnet"
-        vlan_id: "202"
-
-      # ### IOT NETWORKS
-      - name: VLAN-301
-        description: "IOT-Wired-VLAN"
-        vlan_id: "301"
-
-      - name: VLAN-302
-        description: "IOT-Wireless-VLAN"
-        vlan_id: "302"
+      - name: vlan_3
+        description: "vlan_3"
+        vlan_id: "3"
