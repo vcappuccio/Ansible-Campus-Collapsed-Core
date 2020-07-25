@@ -3,3 +3,5 @@ files/example_configs/*.conf
 .vscode
 files/ansible/filter_plugins/__pycache__/*
 .DS_Store
+files/example_configs/configurations/working
+files/tmp/ansible.log
