@@ -1,4 +1,4 @@
-# Ansible Campus Fabric Core Distribution CRB
+# Ansible Campus Collapsed Core
 
 [![N|Solid](https://upload.wikimedia.org/wikipedia/commons/3/31/Juniper_Networks_logo.svg)](https://www.juniper.net/documentation/solutions/en_US/campus)
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-`Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG` is my personal EVE-NG lab version of the official repo `Ansible-Campus-Fabric-Core-Distribution-CRB`.
+`Ansible-Campus-Collapsed-Core` is an easier way to deploy a campus network based on a Collapsed Core design.
 
 This project is based on *[Infrastructure-As-Code](https://dev.to/fedekau/infrastructure-as-code-a-beginners-perspective-2l8k)* concepts, where all elements of a device's configuration as stored in a format of `key:value` pairs and stored in a source-code management system such as Github or Gitlab. While not required for successful deployments, we at Juniper encourage network devops teams to *[leverage best practicies with git](https://dev.to/bholmesdev/git-github-best-practices-for-teams-opinionated-28h7)*.
 
@@ -32,7 +32,7 @@ The crux of this project is to build the device configurations locally by execut
 
 Here is a high level perspective of what the playbook will build without any adjustments made to the yaml files stored within the respective `group_vars` and `host_vars` directories
 
-### Campus Fabric with Collapsed Core Diagram
+### Collapsed Core EVPN Multihoming Diagram
 
 [![campus collapsed core](files/images/Collapsed-Core.png)](files/images/Collapsed-Core.png)
 
@@ -42,7 +42,7 @@ The execution of this playbook can be acheived in multiple ways, experiment with
 
 ### Running inside a Docker container
 
-This is a personal preference, but this is a very clean method to run the playbook as it already manages all of your Python package dependencies. Within the root directory, you will run two commands to build and run the dedicated docker container.
+This is a personal preference, but this is a very clean method to run the playbook as it already manages all of your Python package dependencies. Within the root directory of this project, you will run two commands to build and run the dedicated docker container.
 
 #### Building the Ansible container
 
