@@ -34,7 +34,7 @@ Here is a high level perspective of what the playbook will build without any adj
 
 ### Campus Fabric with Core-Distribution CRB Core Diagram
 
-[![campus collapsed core](files/images/Collapsed-Core.jpg)](files/images/Collapsed-Core.jpg)
+[![campus collapsed core](files/images/Collapsed-Core.png)](files/images/Collapsed-Core.png)
 
 ## Execution
 
