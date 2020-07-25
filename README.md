@@ -34,7 +34,7 @@ Here is a high level perspective of what the playbook will build without any adj
 
 ### Campus Fabric with Core-Distribution CRB Core Diagram
 
-[![campus collapsed core](files/images/Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG.png)](files/images/Ansible-VXLAN-EVPN-Campus-Fabric-EVE-NG_small.png)
+[![campus collapsed core](files/images/Collapsed-Core.jpg)](files/images/Collapsed-Core.jpg)
 
 ## Execution
 
