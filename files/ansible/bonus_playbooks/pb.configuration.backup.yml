@@ -33,22 +33,22 @@
     ### -------------------------------------------------
     - name: remove backup directory
       file:
-        path: "{{ backup_directory }}"
+        path: "../{{ backup_directory }}"
         state: absent
 
     - name: create new backup directory
       file:
-        path: "{{ backup_directory }}"
+        path: "../{{ backup_directory }}"
         state: directory
 
     - name: create new backup configuration directory
       file:
-        path: "{{ backup_config_directory }}"
+        path: "../{{ backup_config_directory }}"
         state: directory
 
     - name: create new backup facts directory
       file:
-        path: "{{ backup_facts_directory }}"
+        path: "../{{ backup_facts_directory }}"
         state: directory
 
     ### -------------------------------------------------
@@ -56,7 +56,7 @@
     ### -------------------------------------------------
     - name: "### GET FACTS FROM REMOTE DEVICES ###"
       juniper_junos_facts:
-        savedir: "{{ backup_facts_directory }}/"
+        savedir: "../{{ backup_facts_directory }}/"
         user: "{{ provider_info.user }}"
         passwd: "{{ provider_info.passwd }}"
         # ssh_private_key_file: "{{ provider_info.ssh_private_key_file }}"
@@ -92,4 +92,4 @@
       local_action:
         module: copy
         content: "{{ committed_config }}"
-        dest: "{{ backup_file }}"
+        dest: "../{{ backup_file }}"
