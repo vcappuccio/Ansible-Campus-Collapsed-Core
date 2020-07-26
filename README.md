@@ -56,6 +56,13 @@ Here is a high level perspective of what the playbook will build without any adj
 | access-sw2 | Trunk    | Trunk    | Trunk    | vlan 2   |           |           | 10.6.5.114 |
 | access-sw3 | Trunk    | Trunk    | Trunk    | vlan 3   |           |           | 10.6.5.115 |
 
+### IP Prefix Configurations
+
+|          | lo0.0      | irb.1    | irb.2    | irb.3    |
+|----------|------------|----------|----------|----------|
+| core-sw1 | 172.20.0.1 | 10.0.1.3 | 10.0.2.3 | 10.0.3.3 |
+| core-sw2 | 172.20.0.2 | 10.0.1.2 | 10.0.1.2 | 10.0.1.3 |
+
 ## Execution
 
 The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference. As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands.
