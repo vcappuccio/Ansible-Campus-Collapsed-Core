@@ -46,22 +46,22 @@ Here is a high level perspective of what the playbook will build without any adj
 | access-sw2 | core-sw1   | core-sw2   | mist-ap3   | mist-ap4 |           |           | oob |
 | access-sw3 | core-sw1   | core-sw2   | mist-ap5   | mist-ap6 |           |           | oob |
 
-### Interface Configurations
+### L2 Interface Configurations
 
-|            | xe-0/0/0 | xe-0/0/1 | xe-0/0/2 | xe-0/0/3 | xe-0/0/10 | xe-0/0/11 | em0        |
-|------------|----------|----------|----------|----------|-----------|-----------|------------|
-| core-sw1   | Trunk    | Trunk    | Trunk    |          | 10.99.0.0 | 10.99.0.1 | 10.6.5.111 |
-| core-sw2   | Trunk    | Trunk    | Trunk    |          | 10.99.0.2 | 10.99.0.2 | 10.6.5.112 |
-| access-sw1 | Trunk    | Trunk    | Trunk    | vlan 1   |           |           | 10.6.5.113 |
-| access-sw2 | Trunk    | Trunk    | Trunk    | vlan 2   |           |           | 10.6.5.114 |
-| access-sw3 | Trunk    | Trunk    | Trunk    | vlan 3   |           |           | 10.6.5.115 |
+|            | xe-0/0/0 | xe-0/0/1 | xe-0/0/2 | xe-0/0/3 |
+|------------|----------|----------|----------|----------|
+| core-sw1   | Trunk    | Trunk    | Trunk    |          |
+| core-sw2   | Trunk    | Trunk    | Trunk    |          |
+| access-sw1 | Trunk    | Trunk    | Trunk    | vlan 1   |
+| access-sw2 | Trunk    | Trunk    | Trunk    | vlan 2   |
+| access-sw3 | Trunk    | Trunk    | Trunk    | vlan 3   |
 
-### IP Prefix Configurations
+### L3 Interface Configurations
 
-|          | lo0.0      | irb.1    | irb.2    | irb.3    |
-|----------|------------|----------|----------|----------|
-| core-sw1 | 172.20.0.1 | 10.0.1.3 | 10.0.2.3 | 10.0.3.3 |
-| core-sw2 | 172.20.0.2 | 10.0.1.2 | 10.0.1.2 | 10.0.1.3 |
+|          | lo0.0      | irb.1    | irb.2    | irb.3    | xe-0/0/10 | xe-0/0/11 | em0        |
+|----------|------------|----------|----------|----------|-----------|-----------|------------|
+| core-sw1 | 172.20.0.1 | 10.0.1.3 | 10.0.2.3 | 10.0.3.3 | 10.99.0.0 | 10.99.0.1 | 10.6.5.111 |
+| core-sw2 | 172.20.0.2 | 10.0.1.2 | 10.0.1.2 | 10.0.1.3 | 10.99.0.2 | 10.99.0.2 | 10.6.5.112 |
 
 ## Execution
 
