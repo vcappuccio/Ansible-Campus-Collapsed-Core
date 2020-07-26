@@ -66,7 +66,7 @@ Here is a high level perspective of what the playbook will build without any adj
 | access-sw2 |            |          |          |          |           |           | 10.6.5.114 |
 | access-sw3 |            |          |          |          |           |           | 10.6.5.115 |
 
-## Execution
+## How to execute this playbook
 
 The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference. As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands.
 
