@@ -46,6 +46,16 @@ Here is a high level perspective of what the playbook will build without any adj
 | access-sw2 | core-sw1   | core-sw2   | mist-ap3   | mist-ap4 |           |           | oob |
 | access-sw3 | core-sw1   | core-sw2   | mist-ap5   | mist-ap6 |           |           | oob |
 
+### Interface Configurations
+
+|            | xe-0/0/0   | xe-0/0/1   | xe-0/0/2   | xe-0/0/3       | xe-0/0/10        | xe-0/0/11        | em0           |
+|------------|------------|------------|------------|----------------|------------------|------------------|---------------|
+| core-sw1   | Trunk: All | Trunk: All | Trunk: All |                | 192.168.255.0/31 | 192.168.255.1/31 | 10.6.5.111/24 |
+| core-sw2   | Trunk: All | Trunk: All | Trunk: All |                | 192.168.255.2/31 | 192.168.255.3/31 | 10.6.5.112/24 |
+| access-sw1 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 1 |                  |                  | 10.6.5.113/24 |
+| access-sw2 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 2 |                  |                  | 10.6.5.114/24 |
+| access-sw3 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 3 |                  |                  | 10.6.5.115/24 |
+
 ## Execution
 
 The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference. As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands.
