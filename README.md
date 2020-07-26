@@ -48,13 +48,13 @@ Here is a high level perspective of what the playbook will build without any adj
 
 ### Interface Configurations
 
-|            | xe-0/0/0   | xe-0/0/1   | xe-0/0/2   | xe-0/0/3       | xe-0/0/10        | xe-0/0/11        | em0           |
-|------------|------------|------------|------------|----------------|------------------|------------------|---------------|
-| core-sw1   | Trunk: All | Trunk: All | Trunk: All |                | 192.168.255.0/31 | 192.168.255.1/31 | 10.6.5.111/24 |
-| core-sw2   | Trunk: All | Trunk: All | Trunk: All |                | 192.168.255.2/31 | 192.168.255.3/31 | 10.6.5.112/24 |
-| access-sw1 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 1 |                  |                  | 10.6.5.113/24 |
-| access-sw2 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 2 |                  |                  | 10.6.5.114/24 |
-| access-sw3 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 3 |                  |                  | 10.6.5.115/24 |
+|            | xe-0/0/0   | xe-0/0/1   | xe-0/0/2   | xe-0/0/3       | xe-0/0/10     | xe-0/0/11     | em0        |
+|------------|------------|------------|------------|----------------|---------------|---------------|------------|
+| core-sw1   | Trunk: All | Trunk: All | Trunk: All |                | 192.168.255.0 | 192.168.255.1 | 10.6.5.111 |
+| core-sw2   | Trunk: All | Trunk: All | Trunk: All |                | 192.168.255.2 | 192.168.255.3 | 10.6.5.112 |
+| access-sw1 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 1 |               |               | 10.6.5.113 |
+| access-sw2 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 2 |               |               | 10.6.5.114 |
+| access-sw3 | Trunk: All | Trunk: All | Trunk: All | Access: vlan 3 |               |               | 10.6.5.115 |
 
 ## Execution
 
