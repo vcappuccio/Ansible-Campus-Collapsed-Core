@@ -36,6 +36,16 @@ Here is a high level perspective of what the playbook will build without any adj
 
 [![campus collapsed core](files/images/Collapsed-Core.png)](files/images/Collapsed-Core.png)
 
+### Connection Mappings
+
+|            | xe-0/0/0   | xe-0/0/1   | xe-0/0/2   | xe-0/0/3 | xe-0/0/10 | xe-0/0/11 | em0 |
+|------------|------------|------------|------------|----------|-----------|-----------|-----|
+| core-sw1   | access-sw1 | access-sw2 | access-sw3 |          | core-sw2  | core-sw2  | oob |
+| core-sw2   | access-sw1 | access-sw2 | access-sw3 |          | core-sw1  | core-sw1  | oob |
+| access-sw1 | core-sw1   | core-sw2   | mist-ap1   | mist-ap2 |           |           | oob |
+| access-sw2 | core-sw1   | core-sw2   | mist-ap3   | mist-ap4 |           |           | oob |
+| access-sw3 | core-sw1   | core-sw2   | mist-ap5   | mist-ap6 |           |           | oob |
+
 ## Execution
 
 The execution of this playbook can be acheived in multiple ways, experiment with each to find out your organization's preference. As you will see throughout the documentation, we have provided a `Makefile` to act as a shortcut for many of our project's commands.
