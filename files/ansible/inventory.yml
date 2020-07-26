@@ -17,5 +17,3 @@ all:
               ansible_host: "10.6.5.114"
             access-sw3:
               ansible_host: "10.6.5.115"
-            access-sw4:
-              ansible_host: "10.6.5.116"
