@@ -3,7 +3,7 @@ configuration:
     community:
       authorization: read-only
       clients:
-        - name: 10.255.127.0/24
+        - name: 10.6.6.0/24
         - name: 0.0.0.0/0
           restrict: null
       name: $home_snmp$
@@ -14,11 +14,11 @@ configuration:
           chassis: null
           routing: null
         targets:
-          name: 10.255.127.31
+          name: 10.6.6.31
         version: v2
       - name: space
         targets:
-          name: 10.255.127.33
+          name: 10.6.6.32
         version: v2
     trap_options:
       source_address:
