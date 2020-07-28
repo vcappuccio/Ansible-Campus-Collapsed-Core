@@ -2,22 +2,25 @@ configuration:
   vlans:
     vlan:
       - name: vlan_1
-        description: "MANAGEMENT VLAN"
+        description: "Employee-Wired-VLAN"
         vlan_id: "1"
+        l3_interface: irb.1
         vxlan:
           vni: 5001
           ingress_node_replication: null
 
       - name: vlan_2
-        description: "PC VLAN"
+        description: "Employee-Wired-VLAN"
         vlan_id: "2"
+        l3_interface: irb.2
         vxlan:
           vni: 5002
           ingress_node_replication: null
 
       - name: vlan_3
-        description: "WIRELESS VLAN"
+        description: "IOT-Wired-VLAN"
         vlan_id: "3"
+        l3_interface: irb.3
         vxlan:
           vni: 5003
           ingress_node_replication: null

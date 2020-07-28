@@ -2,83 +2,83 @@ configuration:
   routing_instances:
     instance:
 
-      # ### VRF VIRTUAL_SWITCH_1: virtual-switch
-      - name: "VIRTUAL_SWITCH_1"
-        description: "VRF for virtual-switch"
-        instance_type: "virtual-switch"
-
-        ### INTERFACES
+      # ### VRF 1: Guest Access
+      - name: "JNPR_1_VRF"
+        description: "VRF for Employee Access"
+        instance_type: "vrf"
         interface:
-          - name: "ae15.0"
-
-        ### PROTOCOLS
-        protocols: 
-          evpn:
-            encapsulation: vxlan
-            extended_vni_list:
-              - all
-            # multicast_mode: ingress-replication
-            default_gateway: no-gateway-community
-
-        ### VXLAN
-        vtep_source_interface:
-          interface_name: "lo0.0"
-
-        ### ROUTE DISTINGUISHERS
+          # ### PHYSICAL INTERFACES
+          # ### LOOPBACK INTERFACES
+          - name: "lo0.1"
+          # ### VLAN GATEWAY INTERFACES
+          - name: "irb.1"
         route_distinguisher:
           rd_type: "{{ device.lo0.ipv4 }}:1"
-
-        ### VRF configurations
-        # vrf_import:
-        #   - IMPORT_GLOBAL
-
-        # vrf_table_label: null
-
-        vrf_target: 
-          community: "target:65100:1111"
-          auto: null
-
-        ### VLANS
-        vlans:
-          - name: vlan_1
-            vlan_id: 1
-            l3_interface: irb.1
-            vxlan:
-              vni: 5001
-              ingress_node_replication: null
-          - name: vlan_2
-            vlan_id: 2
-            l3_interface: irb.2
-            vxlan:
-              vni: 5002
-              ingress_node_replication: null
-          - name: vlan_3
-            vlan_id: 3
-            l3_interface: irb.3
-            vxlan:
-              vni: 5003
-              ingress_node_replication: null
-
-      # ### VRF EVPN_VRF_1: vrf
-      - name: EVPN_VRF_1
-        instance_type: "vrf"
-
         routing_options:
-          router_id: "{{ device.lo1.ipv4 }}"
-          autonomous_system: 
-            as_number: 64500
-
-        ### INTERFACES
-        interface:
-          - name: "lo0.1"
-          - name: "irb.1"
-          - name: "irb.2"
-          - name: "irb.3"
-
-        ### ROUTE DISTINGUISHERS
-        route_distinguisher:
-          rd_type: "{{ device.lo1.ipv4 }}:1"
-
-        ### VRF configurations
+          auto_export:
+            family:
+              inet:
+                unicast:
+                  - null
+          static:
+            route:
+              - name: "0.0.0.0/0"
+                next_hop:
+                  - "10.1.1.1"
+        vrf_table_label: null
         vrf_target: 
-          community: "target:64500:1"
+          community: "target:1:65001"
+
+      # ### VRF 2: Employee Access
+      - name: "JNPR_2_VRF"
+        description: "VRF for Guest Access"
+        instance_type: "vrf"
+        interface:
+          # ### PHYSICAL INTERFACES
+          # ### LOOPBACK INTERFACES
+          - name: "lo0.2"
+          # ### VLAN GATEWAY INTERFACES
+          - name: "irb.2"
+        route_distinguisher:
+          rd_type: "{{ device.lo0.ipv4 }}:2"
+        routing_options:
+          auto_export:
+            family:
+              inet:
+                unicast:
+                  - null
+          static:
+            route:
+              - name: "0.0.0.0/0"
+                next_hop:
+                  - "10.1.2.1"
+        vrf_table_label: null
+        vrf_target: 
+          community: "target:2:65001"
+
+      # ### VRF 3: IOT Access
+      - name: "JNPR_3_VRF"
+        description: "VRF for IOT Access"
+        instance_type: "vrf"
+        interface:
+          # ### PHYSICAL INTERFACES
+          # ### LOOPBACK INTERFACES
+          - name: "lo0.3"
+          # ### VLAN GATEWAY INTERFACES
+          - name: "irb.3"
+        route_distinguisher:
+          rd_type: "{{ device.lo0.ipv4 }}:3"
+        routing_options:
+          auto_export:
+            family:
+              inet:
+                unicast:
+                  - null
+          static:
+            route:
+              - name: "0.0.0.0/0"
+                next_hop:
+                  - "10.1.3.1"
+        vrf_table_label: null
+        vrf_target: 
+          community: "target:3:65001"

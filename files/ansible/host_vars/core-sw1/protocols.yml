@@ -42,17 +42,20 @@ configuration:
       encapsulation: "vxlan"
       default_gateway: "no-gateway-community"
       extended_vni_list:
-        - "5101"
-        - "5102"
-        - "5201"
-        - "5202"
-        - "5301"
-        - "5302"
+        - "5001"
+        - "5002"
+        - "5003"
 
     igmp_snooping:
       vlan:
-        - name: "VLAN-201"
-          interface: "ae11.0"
+        - name: "vlan_1"
+          interface: "ae1.0"
+          multicast_router_interface: null
+        - name: "vlan_2"
+          interface: "ae2.0"
+          multicast_router_interface: null
+        - name: "vlan_3"
+          interface: "ae3.0"
           multicast_router_interface: null
 
     # ospf:
